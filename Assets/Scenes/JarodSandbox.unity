@@ -770,41 +770,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1961475597 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-  m_PrefabInstance: {fileID: 7748573501414554692}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1961475599 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7348101144366359728, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-  m_PrefabInstance: {fileID: 7748573501414554692}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961475597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1961475603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961475597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57fa1ceb69b9fe246b8802d7f81a46a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1961475599}
-  hitEffect: {fileID: 3004655224818545443, guid: cc8015bbfe5d0ac418a7bdfb55498835, type: 3}
-  pogo:
-    serializedVersion: 2
-    m_Bits: 64
-  swingDelay: 0.3
-  swingDistance: 1
 --- !u!1001 &7748573501414554692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -853,33 +818,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7348101144366359728, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-      propertyPath: pogoHeight
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548743145947193707, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548743145947193707, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1961475603}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
