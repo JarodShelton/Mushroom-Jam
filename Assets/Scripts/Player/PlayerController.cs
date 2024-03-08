@@ -144,8 +144,17 @@ public class PlayerController : MonoBehaviour
 
     public void Pogo()
     {
-        velocity = new Vector2(velocity.x, pogoVelocity);
-        canFastfall = false;
+        if (!isGrounded)
+        {
+            velocity = new Vector2(velocity.x, pogoVelocity);
+            canFastfall = false;
+        }
+        
+    }
+
+    public bool Grounded()
+    {
+        return isGrounded;
     }
 
     private bool IsGrounded()

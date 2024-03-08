@@ -778,6 +778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 148771949448351958, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: swingDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7093911584874365078, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

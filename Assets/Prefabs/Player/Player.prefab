@@ -199,5 +199,7 @@ MonoBehaviour:
   pogo:
     serializedVersion: 2
     m_Bits: 64
-  swingDelay: 0.3
+  swingDelay: 0.2
   swingDistance: 1
+  coliderLength: 2.5
+  coliderHeight: 2
