@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8548743145947193707}
   - component: {fileID: 7348101144366359728}
   - component: {fileID: 7914238564155212965}
-  m_Layer: 0
+  - component: {fileID: 148771949448351958}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -112,8 +113,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &7348101144366359728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   airMovementReduction: 0.5
   jumpHeight: 3
   timeToPeak: 0.3
+  pogoHeight: 2
   ground:
     serializedVersion: 2
     m_Bits: 8
@@ -180,3 +182,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &148771949448351958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456630681825880313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fa1ceb69b9fe246b8802d7f81a46a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7348101144366359728}
+  hitEffect: {fileID: 3004655224818545443, guid: cc8015bbfe5d0ac418a7bdfb55498835, type: 3}
+  pogo:
+    serializedVersion: 2
+    m_Bits: 64
+  swingDelay: 0.3
+  swingDistance: 1
