@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7093911584874365078}
   - component: {fileID: 9106326034801685789}
   - component: {fileID: 8548743145947193707}
-  - component: {fileID: 7348101144366359728}
   - component: {fileID: 7914238564155212965}
+  - component: {fileID: 7348101144366359728}
   - component: {fileID: 148771949448351958}
+  - component: {fileID: 7681596158063943517}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -115,28 +116,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7348101144366359728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8456630681825880313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 7
-  timeToMaxSpeed: 0.1
-  airMovementReduction: 0.5
-  jumpHeight: 3
-  timeToPeak: 0.3
-  pogoHeight: 2
-  ground:
-    serializedVersion: 2
-    m_Bits: 8
-  velocity: {x: 0, y: 0}
 --- !u!61 &7914238564155212965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +161,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7348101144366359728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456630681825880313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 7
+  timeToMaxSpeed: 0.1
+  airMovementReduction: 0.5
+  jumpHeight: 3
+  timeToPeak: 0.3
+  pogoHeight: 2
+  blastLength: 4
+  blastDuration: 0.15
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
+  velocity: {x: 0, y: 0}
 --- !u!114 &148771949448351958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +202,23 @@ MonoBehaviour:
   pogo:
     serializedVersion: 2
     m_Bits: 64
-  swingDelay: 0.2
+  swingDelay: 0.1
   swingDistance: 1
   coliderLength: 2.5
   coliderHeight: 2
+--- !u!114 &7681596158063943517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456630681825880313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de965c169103afb4c81ee86a6df3e185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7348101144366359728}
+  hitEffect: {fileID: 1292331432102074621, guid: 544d57f30abd79d42a3991dfe4b18411, type: 3}
+  shootDelay: 0.5
+  spawnDistance: 0.75

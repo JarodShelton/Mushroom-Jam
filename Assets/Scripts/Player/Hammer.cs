@@ -20,7 +20,7 @@ public class Hammer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && canSwing)
+        if (Input.GetKeyDown(KeyCode.X) && canSwing)
         {
             Vector2 offset = Vector2.zero;
             Quaternion rotation = Quaternion.identity;
@@ -54,9 +54,6 @@ public class Hammer : MonoBehaviour
 
             Instantiate(hitEffect, transform.position + (Vector3)offset, rotation, gameObject.transform);
             bool hitPogo = Physics2D.BoxCast((Vector2)transform.position, boxSize, 0, offset, swingDistance, pogo);
-            if (hitPogo)
-                Debug.Log("Hit!");
-
             StartCoroutine(SwingDelay());
             if (direction == PlayerController.Direction.Down && hitPogo)
                 player.Pogo();

@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float timeToPeak = 0.3f;
     [SerializeField] float pogoHeight = 1;
 
+    [SerializeField] float blastLength = 7;
+    [SerializeField] float blastDuration = 0.2f;
+
     [SerializeField] LayerMask ground;
 
     public Vector2 velocity = Vector2.zero;
@@ -22,12 +25,14 @@ public class PlayerController : MonoBehaviour
     private float jumpVelocity;
     private float pogoVelocity;
     private float gravity;
+    private float blastVelocity;
 
     private bool isGrounded;
     private bool canQueueJump;
     private bool jumping = false;
     private bool jumpQueued = false;
     private bool canFastfall = false;
+    private bool blasting = false;
 
     private float jumpDelayDuration = 0.05f;
 
@@ -48,65 +53,68 @@ public class PlayerController : MonoBehaviour
         jumpVelocity = (2 * jumpHeight) / timeToPeak;
         gravity = (-2 * jumpHeight) / (timeToPeak * timeToPeak);
         pogoVelocity = Mathf.Sqrt(-2 * gravity * pogoHeight);
+        blastVelocity = blastLength / blastDuration;
     }
 
     private void Update()
     {
         calculateConstants();
-        HorizontalMove();
-        Jump();
+        if (!blasting)
+        {
+            HorizontalMove();
+            Jump();
+        }
     }
 
     private void FixedUpdate()
     {
         canQueueJump = CanQueueJump();
         isGrounded = IsGrounded();
-        Gravity();
+        if(!blasting)
+            Gravity();
         body.velocity = velocity;
     }
 
     private void HorizontalMove()
     {
         float tempAcceleration = isGrounded ? acceleration : acceleration*airMovementReduction;
-        float[] tempVelocity = { velocity.x, velocity.y };
+        float tempVelocity = velocity.x;
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
             walkingDirection = Direction.Right;
-            tempVelocity[0] += tempAcceleration * Time.deltaTime;
-            if (tempVelocity[0] > maxSpeed)
-                tempVelocity[0] = maxSpeed;
+            tempVelocity += tempAcceleration * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             walkingDirection = Direction.Left;
-            tempVelocity[0] -= tempAcceleration * Time.deltaTime;
-            if (tempVelocity[0] < -maxSpeed)
-                tempVelocity[0] = -maxSpeed;
+            tempVelocity -= tempAcceleration * Time.deltaTime;
+            
         }
 
         if(!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
-            if(tempVelocity[0] > 0)
+            if(tempVelocity > 0)
             {
-                tempVelocity[0] -= tempAcceleration * Time.deltaTime;
-                if(tempVelocity[0] < 0)
-                    tempVelocity[0] = 0;
-            }else if(tempVelocity[0] < 0)
+                tempVelocity -= tempAcceleration * Time.deltaTime;
+                if(tempVelocity < 0)
+                    tempVelocity = 0;
+            }else if(tempVelocity < 0)
             {
-                tempVelocity[0] += tempAcceleration * Time.deltaTime;
-                if (tempVelocity[0] > 0)
-                    tempVelocity[0] = 0;
+                tempVelocity += tempAcceleration * Time.deltaTime;
+                if (tempVelocity > 0)
+                    tempVelocity = 0;
             }
         }
 
-        velocity = new Vector2(tempVelocity[0], tempVelocity[1]);
+        tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, maxSpeed);
+        velocity = new Vector2(tempVelocity, velocity.y);
     }
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || jumpQueued)
+        if (Input.GetKeyDown(KeyCode.C) || jumpQueued)
         {
             if (isGrounded && !jumping)
             {
@@ -119,7 +127,7 @@ public class PlayerController : MonoBehaviour
                 jumpQueued = true;
             }
         }
-        else if(canFastfall && Input.GetKeyUp(KeyCode.Space) && velocity.y > 0)
+        else if(canFastfall && Input.GetKeyUp(KeyCode.C) && velocity.y > 0)
         {
             velocity = new Vector2(velocity.x, 0);
         }
@@ -132,14 +140,20 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded)
         {
             yVelocity += gravity*Time.deltaTime;
-            if (yVelocity < -jumpVelocity)
-                yVelocity = -jumpVelocity;
+            yVelocity = Mathf.Clamp(yVelocity, -jumpVelocity, jumpVelocity);
             velocity = new Vector2(velocity.x, yVelocity);
         }
         else if(!jumping)
         {
             velocity = new Vector2(velocity.x, 0);
         }
+    }
+
+    public void Blast(Vector2 direction)
+    {
+        velocity = direction.normalized * blastVelocity;
+        canFastfall = false;
+        StartCoroutine(BlastDelay());
     }
 
     public void Pogo()
@@ -189,5 +203,12 @@ public class PlayerController : MonoBehaviour
         jumping = true;
         yield return new WaitForSeconds(jumpDelayDuration);
         jumping = false;
+    }
+
+    IEnumerator BlastDelay()
+    {
+        blasting = true;
+        yield return new WaitForSeconds(blastDuration);
+        blasting = false;
     }
 }

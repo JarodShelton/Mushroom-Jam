@@ -822,6 +822,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7348101144366359728, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: blastLength
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348101144366359728, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: blastDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
       propertyPath: m_Name
       value: Player
