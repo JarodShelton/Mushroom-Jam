@@ -12,11 +12,15 @@ public class SporeShot : MonoBehaviour
     [SerializeField] float spawnDistance = 0.75f;
 
     private bool canShoot = true;
+    private bool hasShot = true;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && canShoot)
+        if (player.Grounded())
+            hasShot = true;
+
+        if (Input.GetKeyDown(KeyCode.Z) && canShoot && hasShot)
         {
             Vector2 offset = Vector2.zero;
             Quaternion rotation = Quaternion.identity;
@@ -47,6 +51,7 @@ public class SporeShot : MonoBehaviour
             shot.transform.rotation = rotation;
             if (!player.Grounded())
                 player.Blast(-offset);
+            hasShot = false;
             StartCoroutine(SpawnDelay());
         }
             
