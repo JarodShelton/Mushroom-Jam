@@ -173,11 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 7
-  timeToMaxSpeed: 0.1
-  airMovementReduction: 0.5
+  maxSpeed: 10
+  timeToMaxSpeed: 0.15
+  airMovementReduction: 1
   jumpHeight: 3
-  timeToPeak: 0.3
+  timeToPeak: 0.35
   pogoHeight: 2
   blastLength: 4
   blastDuration: 0.15
