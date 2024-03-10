@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask wall;
+    [SerializeField] LayerMask ceiling;
 
     public Vector2 velocity = Vector2.zero;
 
@@ -91,6 +92,13 @@ public class PlayerController : MonoBehaviour
 
         if(!blasting)
             Gravity();
+
+        bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.up, 0.05f, ceiling);
+        if (touchingCeiling)
+        {
+            velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
+            blasting = false;
+        }
 
         body.velocity = velocity;
     }
