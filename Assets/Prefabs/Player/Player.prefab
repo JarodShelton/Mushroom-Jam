@@ -105,7 +105,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fc4647264b09fc7428d58e756a1d75c2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -178,12 +178,21 @@ MonoBehaviour:
   airMovementReduction: 1
   jumpHeight: 3
   timeToPeak: 0.35
+  wallJumpHeight: 3
+  wallJumpSpeed: 10
+  wallJumpReduction: 0.4
+  wallJumpReductionTime: 0.5
+  wallSlideSpeed: 5
+  timeToMaxSlideSpeed: 0.1
   pogoHeight: 2
   blastLength: 4
-  blastDuration: 0.15
+  blastDuration: 0.1
   ground:
     serializedVersion: 2
     m_Bits: 8
+  wall:
+    serializedVersion: 2
+    m_Bits: 256
   velocity: {x: 0, y: 0}
 --- !u!114 &148771949448351958
 MonoBehaviour:

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float maxSpeed = 7;
+    [SerializeField] float maxSpeed = 10;
     [SerializeField] float timeToMaxSpeed = 0.1f;
     [SerializeField] float airMovementReduction = 0.7f;
 
     [SerializeField] float jumpHeight = 3;
     [SerializeField] float timeToPeak = 0.3f;
 
+    [SerializeField] float wallJumpHeight = 3;
+    [SerializeField] float wallJumpSpeed = 10;
+    [SerializeField] float wallJumpReduction = 0.3f;
+    [SerializeField] float wallJumpReductionTime = 0.1f;
     [SerializeField] float wallSlideSpeed = 7;
     [SerializeField] float timeToMaxSlideSpeed = 0.1f;
 
@@ -32,10 +36,12 @@ public class PlayerController : MonoBehaviour
     private float gravity;
     private float blastVelocity;
     private float wallSlideGravity;
+    private float wallJumpVelocity;
 
     private bool isGrounded;
     private bool canQueueJump;
     private bool jumping = false;
+    private bool wallJumping = false;
     private bool jumpQueued = false;
     private bool canFastfall = false;
     private bool blasting = false;
@@ -63,6 +69,7 @@ public class PlayerController : MonoBehaviour
         pogoVelocity = Mathf.Sqrt(-2 * gravity * pogoHeight);
         blastVelocity = blastLength / blastDuration;
         wallSlideGravity = -wallSlideSpeed / timeToMaxSlideSpeed;
+        wallJumpVelocity = Mathf.Sqrt(-2 * gravity * wallJumpHeight);
     }
 
     private void Update()
@@ -90,7 +97,13 @@ public class PlayerController : MonoBehaviour
 
     private void HorizontalMove()
     {
-        float tempAcceleration = isGrounded ? acceleration : acceleration*airMovementReduction;
+        float tempAcceleration = acceleration;
+
+        if (wallJumping)
+            tempAcceleration *= wallJumpReduction;
+        else if (!isGrounded)
+            tempAcceleration *= airMovementReduction;
+
         float tempVelocity = velocity.x;
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -113,7 +126,8 @@ public class PlayerController : MonoBehaviour
                 tempVelocity -= tempAcceleration * Time.deltaTime;
                 if(tempVelocity < 0)
                     tempVelocity = 0;
-            }else if(tempVelocity < 0)
+            }
+            else if(tempVelocity < 0)
             {
                 tempVelocity += tempAcceleration * Time.deltaTime;
                 if (tempVelocity > 0)
@@ -121,9 +135,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(walledLeft)
+        if(walledLeft && !wallJumping)
             tempVelocity = Mathf.Clamp(tempVelocity, 0, maxSpeed);
-        else if(walledRight)
+        else if(walledRight && !wallJumping)
             tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, 0);
         else
             tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, maxSpeed);
@@ -141,9 +155,19 @@ public class PlayerController : MonoBehaviour
                 jumpQueued = false;
                 canFastfall = true;
                 StartCoroutine(JumpDelay());
-            } else if (!jumpQueued && canQueueJump)
+            } 
+            else if (!jumpQueued && canQueueJump)
             {
                 jumpQueued = true;
+            } 
+            else if(Walled() && !jumping && !isGrounded)
+            {
+                jumpQueued = false;
+                float speed = walledLeft ? wallJumpSpeed : -wallJumpSpeed;
+                velocity = new Vector2(speed, wallJumpVelocity);
+                StartCoroutine(JumpDelay());
+                StartCoroutine(WallJumpDelay());
+                canFastfall = false;
             }
         }
         else if(canFastfall && Input.GetKeyUp(KeyCode.C) && velocity.y > 0)
@@ -256,5 +280,12 @@ public class PlayerController : MonoBehaviour
         blasting = true;
         yield return new WaitForSeconds(blastDuration);
         blasting = false;
+    }
+
+    IEnumerator WallJumpDelay()
+    {
+        wallJumping = true;
+        yield return new WaitForSeconds(wallJumpReductionTime);
+        wallJumping = false;
     }
 }
