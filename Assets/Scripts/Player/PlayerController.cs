@@ -10,12 +10,17 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float jumpHeight = 3;
     [SerializeField] float timeToPeak = 0.3f;
+
+    [SerializeField] float wallSlideSpeed = 7;
+    [SerializeField] float timeToMaxSlideSpeed = 0.1f;
+
     [SerializeField] float pogoHeight = 1;
 
     [SerializeField] float blastLength = 7;
     [SerializeField] float blastDuration = 0.2f;
 
     [SerializeField] LayerMask ground;
+    [SerializeField] LayerMask wall;
 
     public Vector2 velocity = Vector2.zero;
 
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private float pogoVelocity;
     private float gravity;
     private float blastVelocity;
+    private float wallSlideGravity;
 
     private bool isGrounded;
     private bool canQueueJump;
@@ -33,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private bool jumpQueued = false;
     private bool canFastfall = false;
     private bool blasting = false;
+    private bool walledLeft = false;
+    private bool walledRight = false;
 
     private float jumpDelayDuration = 0.05f;
 
@@ -54,6 +62,7 @@ public class PlayerController : MonoBehaviour
         gravity = (-2 * jumpHeight) / (timeToPeak * timeToPeak);
         pogoVelocity = Mathf.Sqrt(-2 * gravity * pogoHeight);
         blastVelocity = blastLength / blastDuration;
+        wallSlideGravity = -wallSlideSpeed / timeToMaxSlideSpeed;
     }
 
     private void Update()
@@ -70,8 +79,12 @@ public class PlayerController : MonoBehaviour
     {
         canQueueJump = CanQueueJump();
         isGrounded = IsGrounded();
+        walledLeft = IsWalled(Direction.Left);
+        walledRight = IsWalled(Direction.Right);
+
         if(!blasting)
             Gravity();
+
         body.velocity = velocity;
     }
 
@@ -108,7 +121,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, maxSpeed);
+        if(walledLeft)
+            tempVelocity = Mathf.Clamp(tempVelocity, 0, maxSpeed);
+        else if(walledRight)
+            tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, 0);
+        else
+            tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, maxSpeed);
+
         velocity = new Vector2(tempVelocity, velocity.y);
     }
 
@@ -139,9 +158,18 @@ public class PlayerController : MonoBehaviour
         float yVelocity = velocity.y;
         if (!isGrounded)
         {
-            yVelocity += gravity*Time.deltaTime;
-            yVelocity = Mathf.Clamp(yVelocity, -jumpVelocity, jumpVelocity);
-            velocity = new Vector2(velocity.x, yVelocity);
+            if(HuggingWall() && yVelocity < 0)
+            {
+                yVelocity += wallSlideGravity * Time.deltaTime;
+                yVelocity = Mathf.Clamp(yVelocity, -wallSlideSpeed, jumpVelocity);
+                velocity = new Vector2(velocity.x, yVelocity);
+            }
+            else
+            {
+                yVelocity += gravity * Time.deltaTime;
+                yVelocity = Mathf.Clamp(yVelocity, -jumpVelocity, jumpVelocity);
+                velocity = new Vector2(velocity.x, yVelocity);
+            }
         }
         else if(!jumping)
         {
@@ -171,14 +199,32 @@ public class PlayerController : MonoBehaviour
         return isGrounded;
     }
 
+    public bool Walled()
+    {
+        return walledLeft || walledRight;
+    }
+
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, new Vector2(1,1), 0, -Vector2.up, 0.05f, ground);
+        return Physics2D.BoxCast(transform.position, new Vector2(1,1), 0, Vector2.down, 0.05f, ground);
+    }
+
+    private bool IsWalled(Direction direction)
+    {
+        if (direction == Direction.Right)
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.right, 0.05f, wall);
+        else
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.left, 0.05f, wall);
     }
 
     private bool CanQueueJump()
     {
         return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, -Vector2.up, 1f, ground);
+    }
+
+    public bool HuggingWall()
+    {
+        return walledLeft && Input.GetKey(KeyCode.LeftArrow) || walledRight && Input.GetKey(KeyCode.RightArrow);
     }
 
     public Direction GetFacingDirection()
