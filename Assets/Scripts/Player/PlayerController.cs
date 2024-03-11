@@ -193,13 +193,13 @@ public class PlayerController : MonoBehaviour
             if(HuggingWall() && yVelocity < 0)
             {
                 yVelocity += wallSlideGravity * Time.deltaTime;
-                yVelocity = Mathf.Clamp(yVelocity, -wallSlideSpeed, jumpVelocity);
+                yVelocity = Mathf.Clamp(yVelocity, -wallSlideSpeed, 0);
                 velocity = new Vector2(velocity.x, yVelocity);
             }
             else
             {
                 yVelocity += gravity * Time.deltaTime;
-                yVelocity = Mathf.Clamp(yVelocity, -jumpVelocity, jumpVelocity);
+                yVelocity = Mathf.Clamp(yVelocity, -jumpVelocity, 1000);
                 velocity = new Vector2(velocity.x, yVelocity);
             }
         }
@@ -287,6 +287,7 @@ public class PlayerController : MonoBehaviour
     {
         blasting = true;
         yield return new WaitForSeconds(blastDuration);
+        velocity = new Vector2(Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(velocity.y, -jumpVelocity, jumpVelocity));
         blasting = false;
     }
 
@@ -295,5 +296,6 @@ public class PlayerController : MonoBehaviour
         wallJumping = true;
         yield return new WaitForSeconds(wallJumpReductionTime);
         wallJumping = false;
+
     }
 }
