@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [Header("Layer Mask")]
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask wall;
-    [SerializeField] LayerMask ceiling;
 
     [Header("Horizontal Movement")]
     [SerializeField] float maxSpeed = 10;
@@ -103,7 +102,7 @@ public class PlayerController : MonoBehaviour
         if(!blasting)
             Gravity();
 
-        bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.up, 0.05f, ceiling);
+        bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.up, 0.05f, ground);
         if (touchingCeiling)
         {
             velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));

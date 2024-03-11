@@ -8,6 +8,7 @@ TagManager:
   - Pogo
   - SuperPogo
   - Fan
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - NonInteractable
+  - NonBlocking
   - Player
   - Wall
-  - Ceiling
+  - SporeBlocking
   - 
   - 
   - 

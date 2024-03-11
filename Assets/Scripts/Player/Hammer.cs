@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -64,7 +65,15 @@ public class Hammer : MonoBehaviour
                     player.Pogo();
                 else if (direction == PlayerController.Direction.Down && tag == "SuperPogo")
                     player.SuperPogo();
-
+                else if (tag == "Interactable" || tag == "HammerOnly")
+                {
+                    Component[] interactables = collider.gameObject.GetComponents(typeof(Interactable));
+                    foreach (Component comp in interactables)
+                    {
+                        Interactable i = comp as Interactable;
+                        i.Interact();
+                    }
+                }
             }
             
         }
