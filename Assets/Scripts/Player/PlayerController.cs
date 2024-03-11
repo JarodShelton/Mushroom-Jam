@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("External Objects")]
+    [SerializeField] Rigidbody2D body;
+
+    [Header("Layer Mask")]
+    [SerializeField] LayerMask ground;
+    [SerializeField] LayerMask wall;
+    [SerializeField] LayerMask ceiling;
+
+    [Header("Horizontal Movement")]
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float timeToMaxSpeed = 0.1f;
     [SerializeField] float airMovementReduction = 0.7f;
 
+    [Header("Jump")]
     [SerializeField] float jumpHeight = 3;
     [SerializeField] float timeToPeak = 0.3f;
 
+    [Header("Wall Jump")]
     [SerializeField] float wallJumpHeight = 3;
     [SerializeField] float wallJumpSpeed = 10;
     [SerializeField] float wallJumpReduction = 0.3f;
@@ -18,17 +29,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float wallSlideSpeed = 7;
     [SerializeField] float timeToMaxSlideSpeed = 0.1f;
 
+    [Header("Pogo")]
     [SerializeField] float pogoHeight = 1;
     [SerializeField] float superPogoHeight = 5;
 
+    [Header("Blast")]
     [SerializeField] float blastLength = 7;
     [SerializeField] float blastDuration = 0.2f;
 
-    [SerializeField] LayerMask ground;
-    [SerializeField] LayerMask wall;
-    [SerializeField] LayerMask ceiling;
-
-    public Vector2 velocity = Vector2.zero;
+    private Vector2 velocity = Vector2.zero;
+    private Vector2 externalForces = Vector2.zero;
 
     private Direction walkingDirection;
 
@@ -53,15 +63,12 @@ public class PlayerController : MonoBehaviour
 
     private float jumpDelayDuration = 0.05f;
 
-    private Rigidbody2D body;
-
     public enum Direction { Left, Right, Up , Down}
 
     // Start is called before the first frame update
     void Start()
     {
         calculateConstants();
-        body = GetComponent<Rigidbody2D>();
     }
 
     private void calculateConstants()
@@ -102,6 +109,8 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
             blasting = false;
         }
+
+        velocity += externalForces;
 
         body.velocity = velocity;
     }
@@ -217,6 +226,11 @@ public class PlayerController : MonoBehaviour
         velocity = direction.normalized * blastVelocity;
         canFastfall = false;
         StartCoroutine(BlastDelay());
+    }
+
+    public void ApplyForce(Vector2 force)
+    {
+        externalForces += force;
     }
 
     public void Pogo()

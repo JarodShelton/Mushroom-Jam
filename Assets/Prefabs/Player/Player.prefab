@@ -173,6 +173,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 8548743145947193707}
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
+  wall:
+    serializedVersion: 2
+    m_Bits: 256
+  ceiling:
+    serializedVersion: 2
+    m_Bits: 512
   maxSpeed: 10
   timeToMaxSpeed: 0.15
   airMovementReduction: 1
@@ -185,18 +195,9 @@ MonoBehaviour:
   wallSlideSpeed: 5
   timeToMaxSlideSpeed: 0.1
   pogoHeight: 2
+  superPogoHeight: 5
   blastLength: 4
   blastDuration: 0.1
-  ground:
-    serializedVersion: 2
-    m_Bits: 8
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  ceiling:
-    serializedVersion: 2
-    m_Bits: 512
-  velocity: {x: 0, y: 0}
 --- !u!114 &148771949448351958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +217,8 @@ MonoBehaviour:
     m_Bits: 64
   swingDelay: 0.1
   swingDistance: 1
-  coliderLength: 2.5
-  coliderHeight: 2
+  coliderLength: 3
+  coliderHeight: 2.5
 --- !u!114 &7681596158063943517
 MonoBehaviour:
   m_ObjectHideFlags: 0
