@@ -53,10 +53,20 @@ public class Hammer : MonoBehaviour
             }
 
             Instantiate(hitEffect, transform.position + (Vector3)offset, rotation, gameObject.transform);
-            bool hitPogo = Physics2D.BoxCast((Vector2)transform.position, boxSize, 0, offset, swingDistance, pogo);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + offset, boxSize, 0);
             StartCoroutine(SwingDelay());
-            if (direction == PlayerController.Direction.Down && hitPogo)
-                player.Pogo();
+
+            foreach(Collider2D collider in colliders)
+            {
+                string tag = collider.tag;
+
+                if (direction == PlayerController.Direction.Down && tag == "Pogo")
+                    player.Pogo();
+                else if (direction == PlayerController.Direction.Down && tag == "SuperPogo")
+                    player.SuperPogo();
+
+            }
+            
         }
     }
 

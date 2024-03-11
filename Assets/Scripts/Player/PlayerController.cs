@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float timeToMaxSlideSpeed = 0.1f;
 
     [SerializeField] float pogoHeight = 1;
+    [SerializeField] float superPogoHeight = 5;
 
     [SerializeField] float blastLength = 7;
     [SerializeField] float blastDuration = 0.2f;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private float acceleration;
     private float jumpVelocity;
     private float pogoVelocity;
+    private float superPogoVelocity;
     private float gravity;
     private float blastVelocity;
     private float wallSlideGravity;
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         jumpVelocity = (2 * jumpHeight) / timeToPeak;
         gravity = (-2 * jumpHeight) / (timeToPeak * timeToPeak);
         pogoVelocity = Mathf.Sqrt(-2 * gravity * pogoHeight);
+        superPogoVelocity = Mathf.Sqrt(-2 * gravity * superPogoHeight);
         blastVelocity = blastLength / blastDuration;
         wallSlideGravity = -wallSlideSpeed / timeToMaxSlideSpeed;
         wallJumpVelocity = Mathf.Sqrt(-2 * gravity * wallJumpHeight);
@@ -224,6 +227,16 @@ public class PlayerController : MonoBehaviour
             canFastfall = false;
         }
         
+    }
+
+    public void SuperPogo()
+    {
+        if (!isGrounded)
+        {
+            velocity = new Vector2(velocity.x, superPogoVelocity);
+            canFastfall = false;
+        }
+
     }
 
     public bool Grounded()
