@@ -328,6 +328,7 @@ MonoBehaviour:
   maxSpeed: 10
   timeToMaxSpeed: 0.15
   airMovementReduction: 1
+  overcapMultiplier: 2
   jumpHeight: 3
   timeToPeak: 0.35
   wallJumpHeight: 3
