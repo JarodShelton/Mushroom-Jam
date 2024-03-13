@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShaker : MonoBehaviour
 {
     [SerializeField] Transform anchor;
     Vector2 shakeVector = Vector3.zero;
@@ -20,18 +20,18 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 tempPosition = (Vector2) anchor.position;
+        Vector3 tempPosition = anchor.position;
         if (shakeTimer < shakeDuration)
         {
             if (directedShake)
             {
-                tempPosition += shakeVector * Mathf.Sin(Mathf.PI / shakeDuration * shakeTimer);
+                tempPosition += (Vector3) shakeVector * Mathf.Sin(Mathf.PI / shakeDuration * shakeTimer);
             }
             else
             {
                 float angle = Random.Range(0f, Mathf.PI * 2f);
                 Vector2 randomVector = new Vector2(Mathf.Cos(angle) * undirectedShakeAmplitude, Mathf.Sin(angle) * undirectedShakeAmplitude);
-                tempPosition += randomVector * Mathf.Sin(Mathf.PI / shakeDuration * shakeTimer);
+                tempPosition += (Vector3) randomVector * Mathf.Sin(Mathf.PI / shakeDuration * shakeTimer);
             }
 
             shakeTimer += Time.deltaTime;
@@ -49,6 +49,7 @@ public class CameraShake : MonoBehaviour
             directedShake = false;
             shakeDuration = duration;
             undirectedShakeAmplitude = amplitude;
+            shakeTimer = 0f;
         }
     }
 
