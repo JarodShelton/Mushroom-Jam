@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float timeToMaxSpeed = 0.1f;
     [SerializeField] float airMovementReduction = 0.7f;
+    [SerializeField] float overcapMultiplier = 1.5f;
 
     [Header("Jump")]
     [SerializeField] float jumpHeight = 3;
@@ -135,7 +136,6 @@ public class PlayerController : MonoBehaviour
         {
             walkingDirection = Direction.Left;
             tempVelocity -= tempAcceleration * Time.deltaTime;
-            
         }
 
         if(!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
@@ -158,8 +158,15 @@ public class PlayerController : MonoBehaviour
             tempVelocity = Mathf.Clamp(tempVelocity, 0, maxSpeed);
         else if(walledRight && !wallJumping)
             tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, 0);
-        else
-            tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, maxSpeed);
+        
+        if(Mathf.Abs(tempVelocity) > maxSpeed)
+        {
+            float sign = Mathf.Sign(tempVelocity);
+            tempVelocity = Mathf.Abs(tempVelocity) - tempAcceleration * overcapMultiplier * Time.deltaTime;
+            if(tempVelocity < maxSpeed)
+                tempVelocity = maxSpeed;
+            tempVelocity *= sign;
+        }
 
         velocity = new Vector2(tempVelocity, velocity.y);
     }
