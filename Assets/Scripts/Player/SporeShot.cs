@@ -10,6 +10,7 @@ public class SporeShot : MonoBehaviour
 
     [SerializeField] float shootDelay = 0.5f;
     [SerializeField] float spawnDistance = 0.75f;
+    [SerializeField] float recoil = 5;
 
     private bool canShoot = true;
     private bool hasShot = true;
@@ -49,8 +50,14 @@ public class SporeShot : MonoBehaviour
 
             GameObject shot = Instantiate(hitEffect, transform.position + (Vector3)offset, quaternion.identity, gameObject.transform);
             shot.transform.rotation = rotation;
+
             if (!player.Grounded())
                 player.Blast(-offset);
+            else if (direction.Equals(PlayerController.Direction.Left))
+                player.AddVelocity(Vector2.right * recoil);
+            else if(direction.Equals(PlayerController.Direction.Right))
+                player.AddVelocity(Vector2.left * recoil);
+
             hasShot = false;
             StartCoroutine(SpawnDelay());
         }

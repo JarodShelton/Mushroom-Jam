@@ -239,6 +239,11 @@ public class PlayerController : MonoBehaviour
         externalForces += force;
     }
 
+    public void AddVelocity(Vector2 velocity)
+    {
+        this.velocity += velocity;
+    }
+
     public void Pogo()
     {
         if (!isGrounded)
