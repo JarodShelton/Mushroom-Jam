@@ -35,8 +35,6 @@ public class DoorTransition : MonoBehaviour, Interactable
         // If there's a _bigLight, activate it
         _bigLight?.gameObject.SetActive(true);
         
-        Camera.main.GetComponent<ScreenShake>().Shake();
-        
         // Activate or fade in smaller lights (Coroutine later)
         foreach (Light2D light in _lights)
         {
