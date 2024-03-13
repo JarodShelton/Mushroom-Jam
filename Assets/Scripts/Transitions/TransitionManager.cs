@@ -21,7 +21,7 @@ public class TransitionManager : MonoBehaviour
 
     private Coroutine _lerp = null;
 
-    private float _xOffset = 2;
+    private float _xOffset = 1.5f;
     private float _yOffset = -1.5f;
 
     private void Awake()
