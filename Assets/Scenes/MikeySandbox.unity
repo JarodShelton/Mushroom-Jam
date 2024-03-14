@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1933914}
   - component: {fileID: 1933913}
   m_Layer: 8
-  m_Name: Wall (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1496,7 +1496,7 @@ GameObject:
   - component: {fileID: 178869051}
   - component: {fileID: 178869050}
   m_Layer: 8
-  m_Name: Wall (3)
+  m_Name: Wall (Tiny)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3994,7 +3994,7 @@ GameObject:
   - component: {fileID: 397962968}
   - component: {fileID: 397962967}
   m_Layer: 3
-  m_Name: Ground (2)
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4774,7 +4774,7 @@ GameObject:
   - component: {fileID: 462252369}
   - component: {fileID: 462252368}
   m_Layer: 3
-  m_Name: Ground (6)
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6267,7 +6267,7 @@ GameObject:
   - component: {fileID: 631668147}
   - component: {fileID: 631668146}
   m_Layer: 8
-  m_Name: Wall (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6527,7 +6527,7 @@ GameObject:
   - component: {fileID: 659658300}
   - component: {fileID: 659658299}
   m_Layer: 6
-  m_Name: Pogo (2)
+  m_Name: Pogo
   m_TagString: Pogo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6546,7 +6546,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1273952113}
+  m_Father: {fileID: 694593720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &659658299
 BoxCollider2D:
@@ -7673,6 +7673,9 @@ Transform:
   - {fileID: 1116452709}
   - {fileID: 1403128245}
   - {fileID: 1327313905}
+  - {fileID: 1173375071}
+  - {fileID: 1685963983}
+  - {fileID: 659658298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699208429 stripped
@@ -7721,12 +7724,11 @@ Transform:
   - {fileID: 967381455}
   - {fileID: 495978985}
   - {fileID: 1504255972}
-  - {fileID: 1871978904}
   - {fileID: 1718897534}
   - {fileID: 1360964617}
+  - {fileID: 1871978904}
   - {fileID: 167398100}
   - {fileID: 330694770}
-  - {fileID: 1157863885}
   - {fileID: 804217255}
   - {fileID: 1919750281}
   - {fileID: 795030937}
@@ -7735,10 +7737,11 @@ Transform:
   - {fileID: 555585633}
   - {fileID: 74132089}
   - {fileID: 358564943}
-  - {fileID: 1752332850}
-  - {fileID: 178869049}
   - {fileID: 2033819870}
   - {fileID: 987541199}
+  - {fileID: 1157863885}
+  - {fileID: 1752332850}
+  - {fileID: 178869049}
   - {fileID: 1590636388}
   - {fileID: 1650808573}
   - {fileID: 1211679035}
@@ -8421,7 +8424,7 @@ GameObject:
   - component: {fileID: 749656935}
   - component: {fileID: 749656934}
   m_Layer: 8
-  m_Name: Wall (2)
+  m_Name: Wall (Tiny)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9087,7 +9090,7 @@ GameObject:
   - component: {fileID: 790464378}
   - component: {fileID: 790464377}
   m_Layer: 3
-  m_Name: Ground (5)
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10312,7 +10315,7 @@ GameObject:
   - component: {fileID: 897012756}
   - component: {fileID: 897012755}
   m_Layer: 0
-  m_Name: Spikes (2)
+  m_Name: Spikes
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11758,7 +11761,7 @@ GameObject:
   - component: {fileID: 1080688044}
   - component: {fileID: 1080688043}
   m_Layer: 3
-  m_Name: Ground (1)
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12452,7 +12455,7 @@ GameObject:
   - component: {fileID: 1157863887}
   - component: {fileID: 1157863886}
   m_Layer: 8
-  m_Name: Wall (1)
+  m_Name: Wall (Tiny)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12467,7 +12470,7 @@ Transform:
   m_GameObject: {fileID: 1157863884}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.75, y: -2.9999998, z: 0}
+  m_LocalPosition: {x: 3.75, y: -3, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12712,7 +12715,7 @@ GameObject:
   - component: {fileID: 1173375073}
   - component: {fileID: 1173375072}
   m_Layer: 0
-  m_Name: Spikes (1)
+  m_Name: Spikes
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12731,7 +12734,7 @@ Transform:
   m_LocalScale: {x: 10.0002, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1298644892}
+  m_Father: {fileID: 694593720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1173375072
 BoxCollider2D:
@@ -13102,7 +13105,7 @@ GameObject:
   - component: {fileID: 1211679037}
   - component: {fileID: 1211679036}
   m_Layer: 0
-  m_Name: Spikes (1)
+  m_Name: Spikes
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13722,7 +13725,7 @@ GameObject:
   - component: {fileID: 1254410712}
   - component: {fileID: 1254410711}
   m_Layer: 3
-  m_Name: Ground (4)
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13852,7 +13855,7 @@ GameObject:
   - component: {fileID: 1256946119}
   - component: {fileID: 1256946118}
   m_Layer: 3
-  m_Name: Ground (3)
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14162,8 +14165,6 @@ Transform:
   - {fileID: 676473248}
   - {fileID: 1285536739}
   - {fileID: 868423870}
-  - {fileID: 1685963983}
-  - {fileID: 659658298}
   - {fileID: 1227132731}
   - {fileID: 515850957}
   - {fileID: 1202194139}
@@ -14964,7 +14965,6 @@ Transform:
   - {fileID: 410786363}
   - {fileID: 1196195134}
   - {fileID: 1276823079}
-  - {fileID: 1173375071}
   - {fileID: 1486621431}
   - {fileID: 387406432}
   - {fileID: 750407958}
@@ -15254,7 +15254,7 @@ GameObject:
   - component: {fileID: 1360964616}
   - component: {fileID: 1360964615}
   m_Layer: 3
-  m_Name: Ground (1)
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16814,7 +16814,7 @@ GameObject:
   - component: {fileID: 1570791268}
   - component: {fileID: 1570791267}
   m_Layer: 8
-  m_Name: Wall (3)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17725,7 +17725,7 @@ GameObject:
   - component: {fileID: 1660262526}
   - component: {fileID: 1660262525}
   m_Layer: 3
-  m_Name: Ground
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17985,7 +17985,7 @@ GameObject:
   - component: {fileID: 1685963985}
   - component: {fileID: 1685963984}
   m_Layer: 6
-  m_Name: Pogo (1)
+  m_Name: Pogo
   m_TagString: Pogo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18004,7 +18004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1273952113}
+  m_Father: {fileID: 694593720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1685963984
 BoxCollider2D:
@@ -19028,7 +19028,7 @@ GameObject:
   - component: {fileID: 1752332852}
   - component: {fileID: 1752332851}
   m_Layer: 8
-  m_Name: Wall (2)
+  m_Name: Wall (Tiny)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20082,7 +20082,7 @@ GameObject:
   - component: {fileID: 1871978906}
   - component: {fileID: 1871978905}
   m_Layer: 3
-  m_Name: Ground (2)
+  m_Name: Ground (Tiny)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21680,7 +21680,7 @@ GameObject:
   - component: {fileID: 2041317027}
   - component: {fileID: 2041317026}
   m_Layer: 8
-  m_Name: Wall (3)
+  m_Name: Wall (Tiny)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
