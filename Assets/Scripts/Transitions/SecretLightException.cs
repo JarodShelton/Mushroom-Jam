@@ -9,6 +9,6 @@ public class SecretLightException : MonoBehaviour, Interactable
     
     public void Interact()
     {
-        _secretLight.lightOrder = -1;
+        _secretLight.lightOrder = -5;
     }
 }
