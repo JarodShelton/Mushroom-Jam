@@ -9,6 +9,9 @@ TagManager:
   - SuperPogo
   - Fan
   - Interactable
+  - Spore
+  - Spike
+  - HammerOnly
   layers:
   - Default
   - TransparentFX

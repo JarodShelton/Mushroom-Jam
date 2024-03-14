@@ -6,6 +6,14 @@ using UnityEngine;
 public class Trigger : MonoBehaviour
 {
     [SerializeField] private bool _isEnter = true;
+
+    private TransitionManager _tm;
+
+    private void Awake()
+    {
+        _tm = GetComponentInParent<TransitionManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If player collides with the trigger, check the bool and run according method in parent
