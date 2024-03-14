@@ -9,9 +9,6 @@ using Random = UnityEngine.Random;
 
 public class DoorTransition : MonoBehaviour, Interactable
 {
-    [Header("Respawn")]
-    [SerializeField] private Vector2 _newRespawnPoint;
-    
     [Header("Particle Prefab")]
     [SerializeField] private GameObject _particles;
     
@@ -29,8 +26,17 @@ public class DoorTransition : MonoBehaviour, Interactable
     private SpriteRenderer _sr;
     private BoxCollider2D _bc;
     
+    private Vector2 _newRespawnPoint;
+    
     private void Awake()
     {
+        // Y offset to make sure player spawns on the ground
+        float yOffset = (transform.localScale.y / 2f) - 0.5f;
+        // Bases the respawn point off of the door's location and scale
+        _newRespawnPoint = transform.position - new Vector3(0, yOffset, 0);
+        
+        
+        // Refs
         _rm = GetComponentInParent<RoomManager>();
         _sr = GetComponent<SpriteRenderer>();
         _bc = GetComponent<BoxCollider2D>();
