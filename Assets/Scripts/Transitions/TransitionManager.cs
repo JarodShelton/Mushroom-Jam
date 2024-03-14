@@ -17,16 +17,16 @@ public class TransitionManager : MonoBehaviour
     private Vector3 _camLoc02;
 
     private float _direction = 1f;
-    private float _lerpSpeed = 1/ 0.3f;
+    private float _lerpSpeed = 1 / 0.3f;
     private float _pos = 0f;
 
     private Coroutine _lerp = null;
 
     private float _xOffset = 1.5f;
-    private float _yOffset = -1.5f;
 
     private void Awake()
     {
+        // Refs
         _cam = Camera.main;
         _enterTrigger = transform.GetChild(0).GetComponent<BoxCollider2D>();
         _exitTrigger = transform.GetChild(1).GetComponent<BoxCollider2D>();
@@ -36,31 +36,45 @@ public class TransitionManager : MonoBehaviour
         // Reverses offset for player teleport if the enter trigger is to the right of the exit trigger
         if (_enterTrigger.transform.position.x > _exitTrigger.transform.position.x)
         {
-            _xOffset = -2;
+            _xOffset *= -1;
         }
     }
 
     // Called by Trigger scripts
     private void EnterTrigger()
     {
-        _player.transform.SetPositionAndRotation(_exitTrigger.transform.position + new Vector3(_xOffset,_yOffset,0), Quaternion.identity);
+        // Y offset to make sure player spawns on the ground
+        float yOffset = (_exitTrigger.transform.localScale.y / 2f) - 0.5f;
+        
+        _player.transform.SetPositionAndRotation(_exitTrigger.transform.position + new Vector3(_xOffset,-yOffset,0), Quaternion.identity);
         if(_lerp != null)
             StopCoroutine(_lerp);
         _direction = 1;
         _lerp = StartCoroutine(LerpCamera());
+        
+        // Bases the respawn point off of the opposite trigger's location and scale
+        Vector2 pos = _exitTrigger.transform.position + new Vector3(_xOffset, -yOffset, 0);
+        SetSpawn(pos);
     }
     
     // Called by Trigger scripts
     private void ExitTrigger()
     {
-        _player.transform.SetPositionAndRotation(_enterTrigger.transform.position + new Vector3(-_xOffset, _yOffset,0), Quaternion.identity);
+        // Y offset to make sure player spawns on the ground
+        float yOffset = (_enterTrigger.transform.localScale.y / 2f) - 0.5f;
+        
+        _player.transform.SetPositionAndRotation(_enterTrigger.transform.position + new Vector3(-_xOffset, -yOffset,0), Quaternion.identity);
         if (_lerp != null)
             StopCoroutine(_lerp);
         _direction = -1;
         _lerp = StartCoroutine(LerpCamera());
+        
+        // Bases the respawn point off of the opposite trigger's location and scale
+        Vector2 pos = _enterTrigger.transform.position + new Vector3(-_xOffset, -yOffset, 0);
+        SetSpawn(pos);
     }
 
-    public void SetSpawn(Vector2 pos)
+    private void SetSpawn(Vector2 pos)
     {
         _rm.SetRespawnPoint(pos);
     }
