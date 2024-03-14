@@ -15,6 +15,7 @@ public class RoomManager : MonoBehaviour
     // Used by DoorTransition scripts
     public void SetRespawnPoint(Vector2 pos)
     {
+        Debug.Log(pos);
         _respawnPoint = pos;
     }
     

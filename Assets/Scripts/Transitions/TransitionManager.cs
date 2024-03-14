@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TransitionManager : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
+    [SerializeField] private RoomManager _rm;
     
     private Camera _cam;
     private BoxCollider2D _enterTrigger;
@@ -57,6 +58,11 @@ public class TransitionManager : MonoBehaviour
             StopCoroutine(_lerp);
         _direction = -1;
         _lerp = StartCoroutine(LerpCamera());
+    }
+
+    public void SetSpawn(Vector2 pos)
+    {
+        _rm.SetRespawnPoint(pos);
     }
 
     IEnumerator LerpCamera()
