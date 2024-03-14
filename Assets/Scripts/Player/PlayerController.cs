@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("External Objects")]
     [SerializeField] Rigidbody2D body;
+    [SerializeField] RoomManager room;
 
     [Header("Layer Mask")]
     [SerializeField] LayerMask ground;
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float blastLength = 7;
     [SerializeField] float blastDuration = 0.2f;
 
+    [Header("Respawn")]
+    [SerializeField] float deathDelay = 0.2f;
+    [SerializeField] float respawnDelay = 0.2f;
+
     private Vector2 velocity = Vector2.zero;
     private Vector2 externalForces = Vector2.zero;
 
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private float wallSlideGravity;
     private float wallJumpVelocity;
 
+    private bool freezeMovement = false;
     private bool isGrounded;
     private bool canQueueJump;
     private bool jumping = false;
@@ -86,7 +92,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         calculateConstants();
-        if (!blasting)
+        if (!freezeMovement && !blasting)
         {
             HorizontalMove();
             Jump();
@@ -95,24 +101,28 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        canQueueJump = CanQueueJump();
-        isGrounded = IsGrounded();
-        walledLeft = IsWalled(Direction.Left);
-        walledRight = IsWalled(Direction.Right);
-
-        if(!blasting)
-            Gravity();
-
-        bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.up, 0.05f, ground);
-        if (touchingCeiling)
+        if (!freezeMovement)
         {
-            velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
-            blasting = false;
+            canQueueJump = CanQueueJump();
+            isGrounded = IsGrounded();
+            walledLeft = IsWalled(Direction.Left);
+            walledRight = IsWalled(Direction.Right);
+
+            if (!blasting)
+                Gravity();
+
+            bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.up, 0.05f, ground);
+            if (touchingCeiling)
+            {
+                velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
+                blasting = false;
+            }
+
+            velocity += externalForces;
+
+            body.velocity = velocity;
         }
-
-        velocity += externalForces;
-
-        body.velocity = velocity;
+        
     }
 
     private void HorizontalMove()
@@ -335,5 +345,29 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(wallJumpReductionTime);
         wallJumping = false;
 
+    }
+
+    IEnumerator Kill()
+    {
+        freezeMovement = true;
+        velocity = Vector2.zero;
+        body.velocity = velocity;
+        yield return new WaitForSeconds(deathDelay);
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        transform.position = room.GetRespawnPoint();
+        yield return new WaitForSeconds(respawnDelay);
+        freezeMovement = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Spike")
+        {
+            StartCoroutine(Kill());
+        }
     }
 }
