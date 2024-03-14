@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,7 +60,7 @@ public class TransitionManager : MonoBehaviour
     }
 
     // Called by Trigger scripts
-    private void EnterTrigger()
+    public void EnterTrigger()
     {
         // Y offset to make sure player spawns on the ground
         float yOffset = (_exitTrigger.transform.localScale.y / 2f) - 0.5f;
@@ -88,7 +87,7 @@ public class TransitionManager : MonoBehaviour
     }
     
     // Called by Trigger scripts
-    private void ExitTrigger()
+    public void ExitTrigger()
     {
         // Y offset to make sure player spawns on the ground
         float yOffset = (_enterTrigger.transform.localScale.y / 2f) - 0.5f;
