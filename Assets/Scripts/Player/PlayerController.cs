@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("External Objects")]
     [SerializeField] Rigidbody2D body;
     [SerializeField] RoomManager room;
+    [SerializeField] PlayerAnim anim;
 
     [Header("Layer Mask")]
     [SerializeField] LayerMask ground;
@@ -101,6 +102,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Mathf.Abs(velocity.x) > 0)
+            anim.SetState(PlayerAnim.States.Run);
+        else
+            anim.SetState(PlayerAnim.States.Idle);
         if (!freezeMovement)
         {
             canQueueJump = CanQueueJump();
@@ -138,12 +143,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            anim.flip(false);
             walkingDirection = Direction.Right;
             tempVelocity += tempAcceleration * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            anim.flip(true);
             walkingDirection = Direction.Left;
             tempVelocity -= tempAcceleration * Time.deltaTime;
         }
@@ -220,6 +227,17 @@ public class PlayerController : MonoBehaviour
         {
             if(HuggingWall() && yVelocity < 0)
             {
+                if (walledLeft)
+                {
+                    walkingDirection = Direction.Right;
+                    anim.flip(false);
+                }
+                else
+                {
+                    walkingDirection = Direction.Left;
+                    anim.flip(true);
+                }
+
                 yVelocity += wallSlideGravity * Time.deltaTime;
                 yVelocity = Mathf.Clamp(yVelocity, -wallSlideSpeed, 0);
                 velocity = new Vector2(velocity.x, yVelocity);
