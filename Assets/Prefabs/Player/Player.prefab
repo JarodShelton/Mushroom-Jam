@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 633258254992410034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 4688657140100177602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 2.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,8 +398,8 @@ MonoBehaviour:
   superPogoHeight: 10
   blastLength: 4
   blastDuration: 0.15
-  deathDelay: 0.2
-  respawnDelay: 0.2
+  deathDelay: 0.3
+  respawnDelay: 1.2
 --- !u!114 &148771949448351958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7348101144366359728}
   hitEffect: {fileID: 1292331432102074621, guid: 544d57f30abd79d42a3991dfe4b18411, type: 3}
+  anim: {fileID: 7426327495082454519}
   shootDelay: 0.5
   spawnDistance: 0.5
   recoil: 5
@@ -448,3 +449,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 966944764096663775}
   spriteRenderer: {fileID: 7393633946644593170}
+  currentState: 0

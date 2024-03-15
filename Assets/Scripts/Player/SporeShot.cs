@@ -7,6 +7,7 @@ public class SporeShot : MonoBehaviour
 {
     [SerializeField] PlayerController player = null;
     [SerializeField] GameObject hitEffect = null;
+    [SerializeField] PlayerAnim anim;
 
     [SerializeField] float shootDelay = 0.5f;
     [SerializeField] float spawnDistance = 0.75f;
@@ -48,6 +49,14 @@ public class SporeShot : MonoBehaviour
                     break;
             }
 
+            switch (direction)
+            {
+                case PlayerController.Direction.Left: anim.SetState(PlayerAnim.States.SporeSide); break;
+                case PlayerController.Direction.Right: anim.SetState(PlayerAnim.States.SporeSide); break;
+                case PlayerController.Direction.Up: anim.SetState(PlayerAnim.States.SporeUp); break;
+                case PlayerController.Direction.Down: anim.SetState(PlayerAnim.States.SporeDown); break;
+            }
+
             GameObject shot = Instantiate(hitEffect, transform.position + (Vector3)offset, quaternion.identity, gameObject.transform);
             shot.transform.rotation = rotation;
 
@@ -66,8 +75,10 @@ public class SporeShot : MonoBehaviour
 
     IEnumerator SpawnDelay()
     {
+        anim.SetLock(true);
         canShoot = false;
         yield return new WaitForSeconds(shootDelay);
         canShoot = true;
+        anim.SetLock(false);
     }
 }
