@@ -343,7 +343,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1274260774}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -2209,8 +2209,8 @@ Transform:
   m_GameObject: {fileID: 167398097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 7, z: 1}
+  m_LocalPosition: {x: -3.5, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 6.5002003, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 703418503}
@@ -3575,8 +3575,8 @@ Transform:
   m_GameObject: {fileID: 264822157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80.5, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 12, z: 1}
+  m_LocalPosition: {x: 80.5, y: 9.5, z: 0}
+  m_LocalScale: {x: 1, y: 11.000401, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273952113}
@@ -3826,7 +3826,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1156647067}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -5673,7 +5673,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 35.749996, y: -6.25, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1298644892}
@@ -6390,9 +6390,9 @@ GameObject:
   - component: {fileID: 478122678}
   - component: {fileID: 478122680}
   - component: {fileID: 478122679}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6974,8 +6974,8 @@ Transform:
   m_GameObject: {fileID: 527097101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 147, y: 6, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 1}
+  m_LocalPosition: {x: 147.25, y: 6, z: 0}
+  m_LocalScale: {x: 5.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 392108594}
@@ -7579,8 +7579,8 @@ Transform:
   m_GameObject: {fileID: 579974213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80.5, y: 17.5, z: 0}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: 80.5, y: 17, z: 0}
+  m_LocalScale: {x: 1, y: 3.9998999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1730394080}
@@ -7640,7 +7640,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 557346291}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -7865,8 +7865,8 @@ Transform:
   m_GameObject: {fileID: 594714723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.5, y: 17, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalPosition: {x: 136.25, y: 17, z: 0}
+  m_LocalScale: {x: 6.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1200521389}
@@ -8479,7 +8479,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 39.749996, y: -8.75, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1298644892}
@@ -8608,7 +8608,7 @@ Transform:
   m_GameObject: {fileID: 659658297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 108, y: 18.75, z: 0}
+  m_LocalPosition: {x: 107.5, y: 18.75, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8870,8 +8870,8 @@ Transform:
   m_GameObject: {fileID: 674471113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.5, y: 8, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 65.5, y: 7.5, z: 0}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1730394080}
@@ -8931,7 +8931,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 145476100}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -10104,7 +10104,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 31.749996, y: -8.75, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1298644892}
@@ -11091,7 +11091,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1121496056}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -11303,7 +11303,7 @@ Transform:
   m_GameObject: {fileID: 790464375}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80.5, y: 15.75, z: 0}
+  m_LocalPosition: {x: 80.5, y: 14.75, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12703,7 +12703,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 677655762}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -12894,7 +12894,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1911584135}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -13669,8 +13669,8 @@ Transform:
   m_GameObject: {fileID: 975296440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.5, y: 11, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalPosition: {x: 136.25, y: 11, z: 0}
+  m_LocalScale: {x: 6.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356997688}
@@ -13884,7 +13884,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2, y: -6, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1.9999499, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 703418503}
@@ -14477,7 +14477,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1596777689}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -14938,8 +14938,8 @@ Transform:
   m_GameObject: {fileID: 1056975569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.5, y: 17, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalPosition: {x: 136.25, y: 17, z: 0}
+  m_LocalScale: {x: 6.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356997688}
@@ -16433,7 +16433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numTriggersToActivate: 1
-  reoccuring: 1
+  reoccuring: 0
   reversable: 0
   events:
   - {fileID: 1146406268}
@@ -17093,7 +17093,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 1576604551}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -22120,7 +22120,7 @@ GameObject:
   - component: {fileID: 1630965284}
   - component: {fileID: 1630965283}
   - component: {fileID: 1630965282}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: BREAKABLE MOSS -- 5_1
   m_TagString: HammerOnly
   m_Icon: {fileID: 0}
@@ -22197,7 +22197,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 235589136}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -22585,8 +22585,8 @@ Transform:
   m_GameObject: {fileID: 1660262523}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.5, y: 6.75, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: 65.5, y: 5.75, z: 0}
+  m_LocalScale: {x: 0.99997497, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273952113}
@@ -22845,7 +22845,7 @@ Transform:
   m_GameObject: {fileID: 1685963982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 112, y: 18.75, z: 0}
+  m_LocalPosition: {x: 112.5, y: 18.75, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23633,7 +23633,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 823355380}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -24084,7 +24084,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 250252008}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -24212,8 +24212,8 @@ Transform:
   m_GameObject: {fileID: 1768607001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75.5, y: 18, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalPosition: {x: 75.5, y: 17.75, z: 0}
+  m_LocalScale: {x: 1, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273952113}
@@ -25403,8 +25403,8 @@ Transform:
   m_GameObject: {fileID: 1872544119}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.5, y: 11, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalPosition: {x: 136.25, y: 11, z: 0}
+  m_LocalScale: {x: 6.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1200521389}
@@ -25875,8 +25875,8 @@ Transform:
   m_GameObject: {fileID: 1919750280}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 13, z: 1}
+  m_LocalPosition: {x: -8.5, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 12.4995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 703418503}
@@ -26005,8 +26005,8 @@ Transform:
   m_GameObject: {fileID: 1936134424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 147, y: 8.5, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 1}
+  m_LocalPosition: {x: 147.25, y: 8.5, z: 0}
+  m_LocalScale: {x: 5.5002003, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 392108594}
@@ -26618,8 +26618,8 @@ Transform:
   m_GameObject: {fileID: 1988009600}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.5, y: 5.5, z: 0}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: 65.5, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 2.0001001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273952113}
@@ -27663,7 +27663,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 2009508542}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
@@ -28109,7 +28109,7 @@ MonoBehaviour:
   _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
   _bigLight: {fileID: 297525155}
   _bLightIntensity: 0.2
-  _bLightFadeTime: 0.5
+  _bLightFadeTime: 0.25
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
