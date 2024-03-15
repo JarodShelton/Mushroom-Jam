@@ -26,6 +26,10 @@ public class RoomSkipper : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            _player.KillButton();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
