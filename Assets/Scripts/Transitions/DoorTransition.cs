@@ -21,6 +21,9 @@ public class DoorTransition : MonoBehaviour, Interactable
     [SerializeField] private bool _hasRandomDelay;
     [SerializeField] private float _oLightIntensity;
     [SerializeField] private float _oLightFadeTime;
+
+    [Header("Respawn Point")] 
+    [SerializeField] private Vector2 _respawnPoint;
     
     private RoomManager _rm;
     private SpriteRenderer _sr;
@@ -71,8 +74,8 @@ public class DoorTransition : MonoBehaviour, Interactable
                 : FadeLight(childLight, _oLightIntensity, _oLightFadeTime));
         }
 
-        // Set new checkpoint respawn point
-        _rm.SetRespawnPoint(_newRespawnPoint);
+        // Set new checkpoint respawn point (If spawn is set in editor, use that)
+        _rm.SetRespawnPoint(_respawnPoint != Vector2.zero ? _respawnPoint : _newRespawnPoint);
     }
 
     private IEnumerator FadeLight(Light2D lightToFade, float intensity, float fadeTime)
