@@ -11,7 +11,7 @@ public class PlayerAnim : MonoBehaviour
     private Dictionary<States, string> states = null;
 
     private bool locked = false;
-    private States currentState = States.None;
+    public States currentState = States.None;
 
     public enum States
     {
@@ -21,6 +21,7 @@ public class PlayerAnim : MonoBehaviour
         SporeUp, SporeDown, SporeSide, 
         RiseUp, RiseDown, RiseSide,
         FallUp, FallDown, FallSide,
+        NeutralUp, NeutralDown, NeutralSide,
         HamRiseUp, HamRiseDown, HamRiseSide,
         HamFallUp, HamFallDown, HamFallSide,
         HamStandUp, HamStandSide,
@@ -50,6 +51,9 @@ public class PlayerAnim : MonoBehaviour
         states.Add(States.FallUp, "falling-up");
         states.Add(States.FallDown, "falling-down");
         states.Add(States.FallSide, "falling-side");
+        states.Add(States.NeutralUp, "neutral-up");
+        states.Add(States.NeutralDown, "neutral-down");
+        states.Add(States.NeutralSide, "neutral-side");
         states.Add(States.HamRiseUp, "hammer-rising-up");
         states.Add(States.HamRiseDown, "hammer-rising-down");
         states.Add(States.HamRiseSide, "hammer-rising-side");
@@ -63,10 +67,12 @@ public class PlayerAnim : MonoBehaviour
         states.Add(States.HamWallSide, "hammer-sliding");
     }
 
-    public void SetState(States state)
+    public void SetState(States state, bool interupt = false)
     {
-        if(!locked && state != currentState)
+        if((!locked || interupt) && state != currentState)
         {
+            if(interupt)
+                locked = false;
             anim.Play(states[state]);
             currentState = state;
         }
