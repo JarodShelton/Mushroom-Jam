@@ -457,4 +457,9 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Kill());
         }
     }
+
+    public void KillButton()
+    {
+        StartCoroutine(Kill());
+    }
 }
