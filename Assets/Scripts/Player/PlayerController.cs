@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
             Direction direction = GetFacingDirection();
             if (isGrounded)
             {
-                if (Mathf.Abs(velocity.x) > 0)
+                if (Mathf.Abs(velocity.x) > 0)                                      // running
                     anim.SetState(PlayerAnim.States.Run);
                 else
                     anim.SetState(PlayerAnim.States.Idle);
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if(walledLeft && !wallJumping)
-            tempVelocity = Mathf.Clamp(tempVelocity, 0, maxSpeed);
+            tempVelocity = Mathf.Clamp(tempVelocity, 0, maxSpeed);                                          // sliding?
         else if(walledRight && !wallJumping)
             tempVelocity = Mathf.Clamp(tempVelocity, -maxSpeed, 0);
         
@@ -229,6 +229,8 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded && !jumping)
             {
+                AudioManager.Instance.PlaySFXClip("sfx_player_jumping", .5f);
+
                 velocity = new Vector2(velocity.x, jumpVelocity);
                 jumpQueued = false;
                 canFastfall = true;
@@ -254,6 +256,9 @@ public class PlayerController : MonoBehaviour
                     anim.flip(true);
                     speed = -wallJumpSpeed;
                 }
+
+                AudioManager.Instance.PlaySFXClip("sfx_player_jumping", .5f);
+
                 velocity = new Vector2(speed, wallJumpVelocity);
                 StartCoroutine(JumpDelay());
                 StartCoroutine(WallJumpDelay());
@@ -327,6 +332,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded)
         {
+            AudioManager.Instance.PlaySFXClip("sfx_env_pogo", .6f);
+
             velocity = new Vector2(velocity.x, pogoVelocity);
             canFastfall = false;
         }
@@ -337,6 +344,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded)
         {
+            AudioManager.Instance.PlaySFXClip("sfx_env_pogo", .7f);
+
             velocity = new Vector2(velocity.x, superPogoVelocity);
             canFastfall = false;
         }
@@ -429,6 +438,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        AudioManager.Instance.PlaySFXClip("sfx_player_respawn", .5f);
+
         anim.SetState(PlayerAnim.States.Respawn, true);
         anim.SetLock(true);
         transform.position = room.GetRespawnPoint();
@@ -441,6 +452,8 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Spike")
         {
+            AudioManager.Instance.PlaySFXClip("sfx_player_death", .7f);
+
             StartCoroutine(Kill());
         }
     }

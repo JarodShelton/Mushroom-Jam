@@ -24,6 +24,8 @@ public class Hammer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && canSwing)
         {
+            AudioManager.Instance.PlaySFXClip("sfx_player_hammerSwing", 0.5f);
+
             Vector2 offset = Vector2.zero;
             Quaternion rotation = Quaternion.identity;
 
@@ -53,7 +55,6 @@ public class Hammer : MonoBehaviour
             hitbox.transform.rotation = rotation;
             StartCoroutine(ActivateHitbox());
             StartCoroutine(SwingDelay());
-            
         }
     }
 

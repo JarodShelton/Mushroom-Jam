@@ -11,6 +11,8 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private GameObject _prevLevel;
     [SerializeField] private GameObject _nextLevel;
     
+    [SerializeField] private GameObject[] _deleteThese;
+    
     private Camera _cam;
     private BoxCollider2D _enterTrigger;
     private BoxCollider2D _exitTrigger;
@@ -84,6 +86,11 @@ public class TransitionManager : MonoBehaviour
             StopCoroutine(_lerp);
         _direction = 1;
         _lerp = StartCoroutine(LerpCamera());
+        
+        foreach (var obj in _deleteThese)
+        { 
+            Destroy(obj);
+        }
     }
     
     // Called by Trigger scripts
