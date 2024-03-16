@@ -17,6 +17,9 @@ public class HammerHitbox : MonoBehaviour
             player.SuperPogo();
         else if (tag == "Interactable" || tag == "HammerOnly")
         {
+
+            AudioManager.Instance.PlaySFXClip("sfx_env_destructibleBreaking", .3f);             // listen for
+
             Component[] interactables = collision.gameObject.GetComponents(typeof(Interactable));
             foreach (Component comp in interactables)
             {

@@ -24,6 +24,8 @@ public class SporeShot : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && canShoot && hasShot)
         {
+            AudioManager.Instance.PlaySFXClip("sfx_player_sporeShot", 0.5f);
+
             Vector2 offset = Vector2.zero;
             Quaternion rotation = Quaternion.identity;
 
