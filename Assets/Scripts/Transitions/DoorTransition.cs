@@ -44,6 +44,9 @@ public class DoorTransition : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        // AudioManager.Instance.PlaySFXClip("sfx_env_destroyWall", 0.5f);
+        AudioManager.Instance.PlaySFXClip("sfx_level_destroyScreenBarrier", 0.5f);
+    
         // Hide Sprite (Make an animation later)
         _sr.color = Color.clear;
         _bc.enabled = false;

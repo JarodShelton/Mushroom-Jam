@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     public SoundData[] SFXSounds, ambienceSounds, musicSounds;
-    [SerializeField] private AudioSource SFXSource, ambienceSource, musicSource;
+    //[SerializeField] AudioSource SFXSource, ambienceSource, musicSource;
+    public AudioSource SFXSource, ambienceSource, musicSource;
 
     private void Awake()
     {
@@ -23,23 +24,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // TODO: Plug in audio sources to Audio Manager
+    // TODO: Plug in audio sources to Audio Manager (1/3)
     // TODO: Make volume easier to edit on Audio Manager
-        // OR: Add fields for clip volumes for each script...
-            // Probably shouldn't need to do much editing in-engine...
+    // OR: Add fields for clip volumes for each script...
+    // Probably shouldn't need to do much editing in-engine...
     // TODO: Refactor
 
 
     // Starter documentation for PlaySFX method and some examples for calling methods below...
-    public void PlaySFXClip(string name, Transform sourceTransform) // Do I need to pass volume?
+
+    //public void PlaySFXClip(string name, Transform sourceTransform, float volume)
+    public void PlaySFXClip(string name, float volume)
     {
         // Spawn in audioSource gameObject
-        AudioSource audioSource = Instantiate(SFXSource, sourceTransform.position, Quaternion.identity);
+        // AudioSource audioSource = Instantiate(SFXSource, sourceTransform.position, Quaternion.identity);
 
         // Match string of loaded SoundData clip to the string of call
-        // EXAMPLE (of a call from another script): AudioManager.Instance.PlaySFX("sfx_player_sporeShot", transform, 1f)
-            // You can create a serialized field for volume on any script or try passing it in directly or both
         SoundData sd = Array.Find(SFXSounds, x => x.name == name);
+
+        // Spawn in audioSource gameObject
+        // AudioSource audioSource = Instantiate(SFXSource, sourceTransform.position, Quaternion.identity);
+
         // Check if name matches
         if (sd == null)
         {
@@ -49,15 +54,19 @@ public class AudioManager : MonoBehaviour
         else
         {
             SFXSource.clip = sd.clip;
-            // TODO: Check if "OneShot" plays as expected
+
+            // Asign volume
+            SFXSource.volume = volume;
             SFXSource.PlayOneShot(sd.clip);
         }
+    }
 
         // Get length of clip
-        float clipLength = audioSource.clip.length;
+        // float clipLength = audioSource.clip.length;
         // Destroy the clip after it's done playing
-        Destroy(audioSource.gameObject, clipLength);
-    }
+        // Destroy(audioSource.gameObject, clipLength);
+    
+}
 
     // TODO: PlayRandomSFXClip()
         // Need to pass in an array of audioClips
@@ -68,43 +77,4 @@ public class AudioManager : MonoBehaviour
     
     // TODO: Add fade-in's and -out's
 
-    public void PlayAmbience(string name, Transform sourceTransform)
-    {
-        AudioSource audioSource = Instantiate(ambienceSource, sourceTransform.position, Quaternion.identity);
-        
-        SoundData sd = Array.Find(ambienceSounds, x => x.name == name);
-
-        if (sd == null)
-        {
-            Debug.Log("Sound '" + name + "' Not Found");
-        }
-        else
-        {
-            ambienceSource.clip = sd.clip;
-            ambienceSource.Play();
-        }
-
-        float clipLength = audioSource.clip.length;
-        Destroy(audioSource.gameObject, clipLength);
-    }
-
-    public void PlayMusic(string name, Transform sourceTransform)
-    {
-        AudioSource audioSource = Instantiate(ambienceSource, sourceTransform.position, Quaternion.identity);
-
-        SoundData sd = Array.Find(musicSounds, x => x.name == name);
-
-        if (sd == null)
-        {
-            Debug.Log("Sound '" + name + "' Not Found");
-        }
-        else
-        {
-            musicSource.clip = sd.clip;
-            musicSource.Play();
-        }
-
-        float clipLength = audioSource.clip.length;
-        Destroy(audioSource.gameObject, clipLength);
-    }
-}
+   

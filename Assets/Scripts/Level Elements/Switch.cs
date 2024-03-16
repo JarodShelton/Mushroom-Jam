@@ -12,6 +12,8 @@ public class Switch : MonoBehaviour, Interactable
     {
         if (!flipped)
         {
+            AudioManager.Instance.PlaySFXClip("sfx_player_hitSwitch", 0.5f);
+
             flipped = true;
             manager.SetTrigger();
         }
