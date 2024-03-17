@@ -26,4 +26,9 @@ public class Flipper : MonoBehaviour, Interactable
             sprite.color = Color.red;
         }
     }
+
+    public void TimerEnded()
+    {
+        Interact();
+    }
 }
