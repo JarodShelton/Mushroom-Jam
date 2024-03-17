@@ -52583,6 +52583,18 @@ PrefabInstance:
       propertyPath: swingDelay
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 148771949448351958, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: swingDistance
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688657140100177602, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818356174101024421, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7093911584874365078, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5
