@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Flipper : MonoBehaviour, Interactable
 {
-    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Sprite[] _sprites;
+
+    private SpriteRenderer _sr;
 
     bool set = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        sprite.color = Color.red;
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     public void Interact()
@@ -18,12 +21,17 @@ public class Flipper : MonoBehaviour, Interactable
         if (!set)
         {
             set = true;
-            sprite.color = Color.green;
+            _sr.sprite = _sprites[1];
         }
         else
         {
             set = false;
-            sprite.color = Color.red;
+            _sr.sprite = _sprites[0];
         }
+    }
+
+    public void TimerEnded()
+    {
+        Interact();
     }
 }
