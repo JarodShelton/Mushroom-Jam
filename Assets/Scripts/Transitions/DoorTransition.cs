@@ -42,25 +42,25 @@ public class DoorTransition : MonoBehaviour, Interactable
     
     private void Awake()
     {
+        // Refs
+        _rm = GetComponentInParent<RoomManager>();
+        _sr = GetComponent<SpriteRenderer>();
+        _bc = GetComponent<BoxCollider2D>();
+        
         // Y offset to make sure player spawns on the ground
-        var localScale = transform.localScale;
+        var localScale = _bc.size;
         float yOffset = (localScale.y / 2f) - 0.5f;
         
         // Bases the respawn point off of the door's location and scale
         _newRespawnPoint = transform.position - new Vector3(0, yOffset, 0);
 
         // Set particle shape size to the door's scale
-        _boxSize = new Vector3(localScale.x, localScale.y, localScale.z);
-        
-        // Refs
-        _rm = GetComponentInParent<RoomManager>();
-        _sr = GetComponent<SpriteRenderer>();
-        _bc = GetComponent<BoxCollider2D>();
+        _boxSize = new Vector3(localScale.x, localScale.y);
     }
 
     public void Interact()
     {
-        var localScale = transform.localScale;
+        var localScale = _bc.size;
         
         // AudioManager.Instance.PlaySFXClip("sfx_env_destroyWall", 0.5f);
         AudioManager.Instance.PlaySFXClip("sfx_level_destroyScreenBarrier", 0.5f);

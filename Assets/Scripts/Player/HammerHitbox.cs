@@ -12,9 +12,16 @@ public class HammerHitbox : MonoBehaviour
         string tag = collision.gameObject.tag;
 
         if (direction == PlayerController.Direction.Down && tag == "Pogo")
+        {
             player.Pogo();
+            collision.GetComponentInChildren<ParticleSystem>().Play();
+        }
         else if (direction == PlayerController.Direction.Down && tag == "SuperPogo")
+        {
             player.SuperPogo();
+            collision.GetComponentInChildren<ParticleSystem>().Play();
+        }
+
         else if (tag == "Interactable" || tag == "HammerOnly")
         {
 
