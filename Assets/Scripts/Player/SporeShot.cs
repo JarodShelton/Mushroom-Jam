@@ -12,6 +12,7 @@ public class SporeShot : MonoBehaviour
     [SerializeField] float shootDelay = 0.5f;
     [SerializeField] float spawnDistance = 0.75f;
     [SerializeField] float recoil = 5;
+    [SerializeField] float shootAnimationLock = 0.2f;
 
     private bool canShoot = true;
     private bool hasShot = true;
@@ -22,7 +23,7 @@ public class SporeShot : MonoBehaviour
         if (player.Grounded())
             hasShot = true;
 
-        if (Input.GetKeyDown(KeyCode.Z) && canShoot && hasShot)
+        if (Input.GetKeyDown(KeyCode.Z) && canShoot && hasShot && !player.InputsFrozen())
         {
             AudioManager.Instance.PlaySFXClip("sfx_player_sporeShot", 0.5f);
 
@@ -59,6 +60,7 @@ public class SporeShot : MonoBehaviour
                 case PlayerController.Direction.Down: anim.SetState(PlayerAnim.States.SporeDown); break;
             }
 
+            StartCoroutine(ShootAnimationDelay());
             GameObject shot = Instantiate(hitEffect, transform.position + (Vector3)offset, quaternion.identity, gameObject.transform);
             shot.transform.rotation = rotation;
 
@@ -77,10 +79,15 @@ public class SporeShot : MonoBehaviour
 
     IEnumerator SpawnDelay()
     {
-        anim.SetLock(true);
         canShoot = false;
         yield return new WaitForSeconds(shootDelay);
         canShoot = true;
+    }
+
+    IEnumerator ShootAnimationDelay()
+    {
+        anim.SetLock(true);
+        yield return new WaitForSeconds(shootAnimationLock);
         anim.SetLock(false);
     }
 }

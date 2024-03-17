@@ -83,8 +83,14 @@ public class PlayerAnim : MonoBehaviour
         this.locked = locked;
     }
 
+    public bool Locked()
+    {
+        return locked;
+    }
+
     public void flip(bool x)
     {
-        spriteRenderer.flipX = x;
+        if(!locked)
+            spriteRenderer.flipX = x;
     }
 }

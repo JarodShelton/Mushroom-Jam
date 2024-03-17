@@ -22,7 +22,7 @@ public class Hammer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && canSwing)
+        if (Input.GetKeyDown(KeyCode.X) && canSwing && !player.InputsFrozen())
         {
             AudioManager.Instance.PlaySFXClip("sfx_player_hammerSwing", 0.5f);
 
@@ -30,6 +30,8 @@ public class Hammer : MonoBehaviour
             Quaternion rotation = Quaternion.identity;
 
             PlayerController.Direction direction = player.GetFacingDirection();
+
+            direction = MakeValid(direction);
 
             switch (direction)
             {
@@ -51,11 +53,22 @@ public class Hammer : MonoBehaviour
                     break;
             }
 
+            player.AnimateSwing(direction);
             hitbox.transform.position = (Vector2) transform.position + offset;
             hitbox.transform.rotation = rotation;
             StartCoroutine(ActivateHitbox());
             StartCoroutine(SwingDelay());
         }
+    }
+
+    private PlayerController.Direction MakeValid(PlayerController.Direction direction)
+    {
+        if (player.HuggingWall())
+            return player.GetWalkingDirection();
+        else if (player.Grounded() && direction == PlayerController.Direction.Down)
+            return player.GetWalkingDirection();
+
+        return direction;
     }
 
     IEnumerator ActivateHitbox()

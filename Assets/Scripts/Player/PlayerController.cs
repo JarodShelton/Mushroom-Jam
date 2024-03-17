@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Pogo")]
     [SerializeField] float pogoHeight = 1;
     [SerializeField] float superPogoHeight = 5;
+    [SerializeField] float swingLockDelay = 0.1f;
 
     [Header("Blast")]
     [SerializeField] float blastLength = 7;
@@ -176,17 +177,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            if (!HuggingWall())
+            if (!HuggingWall() && !blasting)
+            {
                 anim.flip(false);
-            walkingDirection = Direction.Right;
+                walkingDirection = Direction.Right;
+            }
             tempVelocity += tempAcceleration * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if (!HuggingWall())
+            if (!HuggingWall() && !blasting)
+            {
                 anim.flip(true);
-            walkingDirection = Direction.Left;
+                walkingDirection = Direction.Left;
+            }
             tempVelocity -= tempAcceleration * Time.deltaTime;
         }
 
@@ -246,14 +251,20 @@ public class PlayerController : MonoBehaviour
                 float speed = 0;
                 if (walledLeft)
                 {
-                    walkingDirection = Direction.Right;
-                    anim.flip(false);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Right;
+                        anim.flip(false);
+                    }
                     speed = wallJumpSpeed;
                 }
                 else
                 {
-                    walkingDirection = Direction.Left;
-                    anim.flip(true);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Left;
+                        anim.flip(true);
+                    }
                     speed = -wallJumpSpeed;
                 }
 
@@ -277,20 +288,24 @@ public class PlayerController : MonoBehaviour
         float yVelocity = velocity.y;
         if (!isGrounded)
         {
-            if(HuggingWall())
-                anim.SetState(PlayerAnim.States.WallSlide);
-
-            if (HuggingWall() && yVelocity < 0)
+            if (HuggingWall() && yVelocity <= 0)
             {
+                anim.SetState(PlayerAnim.States.WallSlide);
                 if (walledLeft)
                 {
-                    walkingDirection = Direction.Right;
-                    anim.flip(false);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Right;
+                        anim.flip(false);
+                    }
                 }
                 else
                 {
-                    walkingDirection = Direction.Left;
-                    anim.flip(true);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Left;
+                        anim.flip(true);
+                    }
                 }
 
                 yVelocity += wallSlideGravity * Time.deltaTime;
@@ -382,7 +397,7 @@ public class PlayerController : MonoBehaviour
 
     public bool HuggingWall()
     {
-        return walledLeft && Input.GetKey(KeyCode.LeftArrow) || walledRight && Input.GetKey(KeyCode.RightArrow);
+        return !isGrounded && (walledLeft && Input.GetKey(KeyCode.LeftArrow) || walledRight && Input.GetKey(KeyCode.RightArrow));
     }
 
     public Direction GetFacingDirection()
@@ -400,6 +415,53 @@ public class PlayerController : MonoBehaviour
             return Direction.Left;
 
         return walkingDirection;
+    }
+
+    public Direction GetWalkingDirection()
+    {
+        return walkingDirection;
+    }
+
+    public void FreezeInput(bool freeze)
+    {
+        freezeMovement = freeze;
+    }
+
+    public bool InputsFrozen()
+    {
+        return freezeMovement;
+    }
+
+    public void AnimateSwing(Direction direction)
+    {
+        PlayerAnim.States swing = PlayerAnim.States.None;
+        switch (direction)
+        {
+            case PlayerController.Direction.Up:
+                if (isGrounded)
+                    swing = velocity.x > 0 ? PlayerAnim.States.HamRunUp : PlayerAnim.States.HamStandUp;
+                else
+                    swing = velocity.y < 0 ? PlayerAnim.States.HamFallUp : PlayerAnim.States.HamRiseUp;
+                break;
+
+            case PlayerController.Direction.Down:
+                swing = velocity.y < 0 ? PlayerAnim.States.HamFallDown : PlayerAnim.States.HamRiseDown;
+                break;
+
+            default:
+                if (isGrounded)
+                    swing = velocity.x > 0 ? PlayerAnim.States.HamRunSide : PlayerAnim.States.HamStandSide;
+                else
+                    swing = velocity.y < 0 ? PlayerAnim.States.HamFallSide : PlayerAnim.States.HamRiseSide;
+                    anim.SetState(swing);
+                break;
+        }
+
+        Debug.Log("Swinging!");
+
+        anim.SetState(swing);
+        anim.SetLock(true);
+        StartCoroutine(LockAnimations(swingLockDelay));
     }
 
     IEnumerator JumpDelay()
@@ -423,6 +485,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(wallJumpReductionTime);
         wallJumping = false;
 
+    }
+
+    IEnumerator LockAnimations(float time)
+    {
+        anim.SetLock(true);
+        yield return new WaitForSeconds(time);
+        anim.SetLock(false);
     }
 
     IEnumerator Kill()
@@ -462,4 +531,5 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(Kill());
     }
+
 }
