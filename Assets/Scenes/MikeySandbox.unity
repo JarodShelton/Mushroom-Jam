@@ -340,7 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1274260774}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -6176,7 +6178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1156647067}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -6945,7 +6949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1784178878}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -7615,7 +7621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1799826856}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -9286,7 +9294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1793496201}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -13053,7 +13063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 557346291}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -13435,7 +13447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 1
   _bigLight: {fileID: 778764594}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -17244,7 +17258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1121496056}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -19780,7 +19796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 677655762}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -20102,7 +20120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1911584135}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -20434,7 +20454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 1
   _bigLight: {fileID: 321258173}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -22404,7 +22426,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1596777689}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -27104,7 +27128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 1576604551}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -29136,7 +29162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 1
   _bigLight: {fileID: 639207921}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -31310,7 +31338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 1
   _bigLight: {fileID: 832193885}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -33568,7 +33598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 2060212075}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -34858,7 +34890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 235589136}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -36737,7 +36771,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 823355380}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -36929,7 +36965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 250252008}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -39006,7 +39044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 1
   _bigLight: {fileID: 763966036}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -42762,7 +42802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 238065751}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -43097,7 +43139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 2009508542}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
@@ -44214,7 +44258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b697ab27929e54294eff816b349911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _decayParticles: {fileID: 329741539961974769, guid: c90ea5f8db410ee47bd09b40dfd16036, type: 3}
+  _smashParticles: {fileID: 329741539961974769, guid: dd2024a2dc2fbe44ca16aa7ac96aab3e, type: 3}
+  _facesLeft: 0
   _bigLight: {fileID: 297525155}
   _bLightIntensity: 0.5
   _bLightFadeTime: 0.25
