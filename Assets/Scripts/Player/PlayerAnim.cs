@@ -15,7 +15,7 @@ public class PlayerAnim : MonoBehaviour
 
     public enum States
     {
-        None, Idle, Run,
+        None, Idle, Run, CrouchRun, RunUp,
         Death, Crouch, LookUp,
         Respawn, WallSlide, WallJump, Jump, 
         SporeUp, SporeDown, SporeSide, 
@@ -36,6 +36,8 @@ public class PlayerAnim : MonoBehaviour
         states.Add(States.Idle, "idle");
         states.Add(States.Run, "run");
         states.Add(States.Death, "death");
+        states.Add(States.CrouchRun, "crouch-run");
+        states.Add(States.RunUp, "look-up-run");
         states.Add(States.Crouch, "crouch");
         states.Add(States.LookUp, "look-up");
         states.Add(States.Respawn, "respawn");
@@ -83,8 +85,14 @@ public class PlayerAnim : MonoBehaviour
         this.locked = locked;
     }
 
+    public bool Locked()
+    {
+        return locked;
+    }
+
     public void flip(bool x)
     {
-        spriteRenderer.flipX = x;
+        if(!locked)
+            spriteRenderer.flipX = x;
     }
 }

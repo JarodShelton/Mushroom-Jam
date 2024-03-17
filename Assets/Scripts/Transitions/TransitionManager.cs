@@ -129,6 +129,9 @@ public class TransitionManager : MonoBehaviour
 
     IEnumerator LerpCamera()
     {
+        PlayerController _controller = _player.GetComponent<PlayerController>();
+        _controller.FreezeInput(true);
+        yield return new WaitForSeconds(0.1f);
         float target = _direction > 0 ? 1 : 0;
         while (_pos != target)
         {
@@ -137,5 +140,7 @@ public class TransitionManager : MonoBehaviour
             _cam.transform.position = Vector3.Lerp(_prevCamPos, _nextCamPos, _pos);
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
+        _controller.FreezeInput(false);
     }
 }

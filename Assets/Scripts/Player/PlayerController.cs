@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Pogo")]
     [SerializeField] float pogoHeight = 1;
     [SerializeField] float superPogoHeight = 5;
+    [SerializeField] float swingLockDelay = 0.15f;
 
     [Header("Blast")]
     [SerializeField] float blastLength = 7;
@@ -58,8 +59,10 @@ public class PlayerController : MonoBehaviour
     private float wallJumpVelocity;
 
     private bool freezeMovement = false;
-    private bool isGrounded;
-    private bool canQueueJump;
+    private bool isGrounded = true;
+    private bool canQueueJump = false;
+    private bool canWallJumpLeft = false;
+    private bool canWallJumpRight = false;
     private bool jumping = false;
     private bool wallJumping = false;
     private bool jumpQueued = false;
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
     private bool blasting = false;
     private bool walledLeft = false;
     private bool walledRight = false;
+    private bool directionOverride = false;
 
     private float jumpDelayDuration = 0.05f;
 
@@ -92,39 +96,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        calculateConstants();
         if (!freezeMovement && !blasting)
         {
             HorizontalMove();
             Jump();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (!freezeMovement)
-        {
-
-            canQueueJump = CanQueueJump();
-            isGrounded = IsGrounded();
-            walledLeft = IsWalled(Direction.Left);
-            walledRight = IsWalled(Direction.Right);
-
-            if (!blasting)
-            {
-                Gravity();
-            }
-
-            bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(0.8f, 1), 0, Vector2.up, 0.05f, ground);
-            if (touchingCeiling)
-            {
-                velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
-                blasting = false;
-            }
-
-            velocity += externalForces;
-
-            body.velocity = velocity;
         }
 
         if (!blasting && !HuggingWall() && !freezeMovement)
@@ -133,13 +108,23 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 if (Mathf.Abs(velocity.x) > 0)                                      // running
-                    anim.SetState(PlayerAnim.States.Run);
+                    switch (direction)
+                    {
+                        case Direction.Up: anim.SetState(PlayerAnim.States.RunUp); break;
+                        case Direction.Down: anim.SetState(PlayerAnim.States.CrouchRun); break;
+                        default: anim.SetState(PlayerAnim.States.Run); break;
+                    }
                 else
-                    anim.SetState(PlayerAnim.States.Idle);
+                    switch (direction)
+                    {
+                        case Direction.Up: anim.SetState(PlayerAnim.States.LookUp); break;
+                        case Direction.Down: anim.SetState(PlayerAnim.States.Crouch); break;
+                        default: anim.SetState(PlayerAnim.States.Idle); break;
+                    }
             }
             else
             {
-                if(velocity.y > 0)
+                if (velocity.y > 0)
                 {
                     switch (direction)
                     {
@@ -158,7 +143,36 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!freezeMovement)
+        {
+            canQueueJump = CanQueueJump();
+            isGrounded = IsGrounded();
+            walledLeft = IsWalled(Direction.Left);
+            walledRight = IsWalled(Direction.Right);
+            canWallJumpLeft = CanWallJump(Direction.Left);
+            canWallJumpRight = CanWallJump(Direction.Right);
+
+            if (!blasting)
+            {
+                Gravity();
+            }
+
+            bool touchingCeiling = Physics2D.BoxCast(transform.position, new Vector2(0.8f, 1), 0, Vector2.up, 0.05f, ground);
+            if (touchingCeiling)
+            {
+                velocity = new Vector2(velocity.x, Mathf.Clamp(velocity.y, -jumpVelocity, 0));
+                blasting = false;
+            }
+
+            velocity += externalForces;
+
+            body.velocity = velocity;
         }
 
     }
@@ -174,23 +188,38 @@ public class PlayerController : MonoBehaviour
 
         float tempVelocity = velocity.x;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
-            if (!HuggingWall())
+            directionOverride = false;
+            if (!HuggingWall() && !blasting && !anim.Locked())
+            {
                 anim.flip(false);
-            walkingDirection = Direction.Right;
+                walkingDirection = Direction.Right;
+            }
             tempVelocity += tempAcceleration * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
+        } 
+        else if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            if (!HuggingWall())
+            directionOverride = false;
+            if (!HuggingWall() && !blasting)
+            {
                 anim.flip(true);
-            walkingDirection = Direction.Left;
+                walkingDirection = Direction.Left;
+            }
             tempVelocity -= tempAcceleration * Time.deltaTime;
         }
-
-        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+        else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            if (!directionOverride && !HuggingWall() && !blasting)
+            {
+                directionOverride = true;
+                walkingDirection = walkingDirection == Direction.Left ? Direction.Right : Direction.Left;
+                anim.flip(walkingDirection == Direction.Left ? true : false);
+            }
+            float sign = walkingDirection == Direction.Left? -1 : 1;
+            tempVelocity += sign * tempAcceleration * Time.deltaTime;
+        }
+        else
         {
             if(tempVelocity > 0)
             {
@@ -240,11 +269,11 @@ public class PlayerController : MonoBehaviour
             {
                 jumpQueued = true;
             } 
-            else if(Walled() && !jumping && !isGrounded)
+            else if((canWallJumpLeft || canWallJumpRight) && !jumping && !isGrounded)
             {
                 jumpQueued = false;
                 float speed = 0;
-                if (walledLeft)
+                if (canWallJumpLeft)
                 {
                     walkingDirection = Direction.Right;
                     anim.flip(false);
@@ -277,20 +306,24 @@ public class PlayerController : MonoBehaviour
         float yVelocity = velocity.y;
         if (!isGrounded)
         {
-            if(HuggingWall())
-                anim.SetState(PlayerAnim.States.WallSlide);
-
-            if (HuggingWall() && yVelocity < 0)
+            if (HuggingWall() && yVelocity <= 0)
             {
+                anim.SetState(PlayerAnim.States.WallSlide);
                 if (walledLeft)
                 {
-                    walkingDirection = Direction.Right;
-                    anim.flip(false);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Right;
+                        anim.flip(false);
+                    }
                 }
                 else
                 {
-                    walkingDirection = Direction.Left;
-                    anim.flip(true);
+                    if (!anim.Locked())
+                    {
+                        walkingDirection = Direction.Left;
+                        anim.flip(true);
+                    }
                 }
 
                 yVelocity += wallSlideGravity * Time.deltaTime;
@@ -380,9 +413,17 @@ public class PlayerController : MonoBehaviour
         return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, -Vector2.up, 1f, ground);
     }
 
+    private bool CanWallJump(Direction direction)
+    {
+        if (direction == Direction.Right)
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.right, 0.15f, wall);
+        else
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.left, 0.15f, wall);
+    }
+
     public bool HuggingWall()
     {
-        return walledLeft && Input.GetKey(KeyCode.LeftArrow) || walledRight && Input.GetKey(KeyCode.RightArrow);
+        return !isGrounded && (walledLeft && Input.GetKey(KeyCode.LeftArrow) || walledRight && Input.GetKey(KeyCode.RightArrow));
     }
 
     public Direction GetFacingDirection()
@@ -393,13 +434,59 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
             return Direction.Up;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
             return Direction.Right;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
             return Direction.Left;
 
         return walkingDirection;
+    }
+
+    public Direction GetWalkingDirection()
+    {
+        return walkingDirection;
+    }
+
+    public void FreezeInput(bool freeze)
+    {
+        freezeMovement = freeze;
+        body.velocity = Vector2.zero;
+    }
+
+    public bool InputsFrozen()
+    {
+        return freezeMovement;
+    }
+
+    public void AnimateSwing(Direction direction)
+    {
+        PlayerAnim.States swing = PlayerAnim.States.None;
+        switch (direction)
+        {
+            case PlayerController.Direction.Up:
+                if (isGrounded)
+                    swing = velocity.x > 0 ? PlayerAnim.States.HamRunUp : PlayerAnim.States.HamStandUp;
+                else
+                    swing = velocity.y < 0 ? PlayerAnim.States.HamFallUp : PlayerAnim.States.HamRiseUp;
+                break;
+
+            case PlayerController.Direction.Down:
+                swing = velocity.y < 0 ? PlayerAnim.States.HamFallDown : PlayerAnim.States.HamRiseDown;
+                break;
+
+            default:
+                if (isGrounded)
+                    swing = velocity.x > 0 ? PlayerAnim.States.HamRunSide : PlayerAnim.States.HamStandSide;
+                else
+                    swing = velocity.y < 0 ? PlayerAnim.States.HamFallSide : PlayerAnim.States.HamRiseSide;
+                    anim.SetState(swing);
+                break;
+        }
+
+        anim.SetState(swing);
+        anim.SetLock(true);
+        StartCoroutine(LockAnimations(swingLockDelay));
     }
 
     IEnumerator JumpDelay()
@@ -423,6 +510,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(wallJumpReductionTime);
         wallJumping = false;
 
+    }
+
+    IEnumerator LockAnimations(float time)
+    {
+        anim.SetLock(true);
+        yield return new WaitForSeconds(time);
+        anim.SetLock(false);
     }
 
     IEnumerator Kill()
@@ -462,4 +556,5 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(Kill());
     }
+
 }
