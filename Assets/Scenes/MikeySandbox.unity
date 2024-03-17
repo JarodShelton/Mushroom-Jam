@@ -9991,7 +9991,7 @@ MonoBehaviour:
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
-  _respawnPoint: {x: 0, y: 0}
+  _respawnPoint: {x: 74, y: -20.5}
 --- !u!61 &395823747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37477,7 +37477,7 @@ MonoBehaviour:
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
-  _respawnPoint: {x: 0, y: 0}
+  _respawnPoint: {x: 113, y: 19.5}
 --- !u!61 &1630965284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47340,7 +47340,7 @@ MonoBehaviour:
   _hasRandomDelay: 0
   _oLightIntensity: 0
   _oLightFadeTime: 0
-  _respawnPoint: {x: 0, y: 0}
+  _respawnPoint: {x: 26.5, y: -4.5}
 --- !u!61 &2126950119
 BoxCollider2D:
   m_ObjectHideFlags: 0
