@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
@@ -31,13 +32,22 @@ public class DoorTransition : MonoBehaviour, Interactable
     
     private Vector2 _newRespawnPoint;
     
+    // Allows changing of particle shape so it fits all the door sizes
+    private ParticleSystem _ps;
+    private readonly ParticleSystemShapeType _boxShape = ParticleSystemShapeType.Box;
+    private Vector3 _boxSize;
+    
     private void Awake()
     {
         // Y offset to make sure player spawns on the ground
-        float yOffset = (transform.localScale.y / 2f) - 0.5f;
+        var localScale = transform.localScale;
+        float yOffset = (localScale.y / 2f) - 0.5f;
+        
         // Bases the respawn point off of the door's location and scale
         _newRespawnPoint = transform.position - new Vector3(0, yOffset, 0);
-        
+
+        // Set particle shape size to the door's scale
+        _boxSize = new Vector3(localScale.x, localScale.y, localScale.z);
         
         // Refs
         _rm = GetComponentInParent<RoomManager>();
@@ -55,7 +65,13 @@ public class DoorTransition : MonoBehaviour, Interactable
         _bc.enabled = false;
 
         // Instantiate Particles
-        Instantiate(_particles, transform.position, quaternion.identity);
+        GameObject particle = Instantiate(_particles, transform.position, quaternion.identity);
+        
+        // Apply changes to the particle's shape
+        ParticleSystem ps = particle.GetComponent<ParticleSystem>();
+        var shape = ps.shape;
+        shape.shapeType = _boxShape;
+        shape.scale = _boxSize;  
 
         // If there's a _bigLight, fade it in
         if (_bigLight != null)
