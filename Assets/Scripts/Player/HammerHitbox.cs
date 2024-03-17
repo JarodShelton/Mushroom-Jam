@@ -14,11 +14,18 @@ public class HammerHitbox : MonoBehaviour
         if (direction == PlayerController.Direction.Down && tag == "Pogo")
         {
             player.Pogo();
-            collision.GetComponentInChildren<ParticleSystem>().Play();
+            if (collision.GetComponentInChildren<ParticleSystem>())
+            {
+                collision.GetComponentInChildren<ParticleSystem>().Play();
+            }
         }
         else if (direction == PlayerController.Direction.Down && tag == "SuperPogo")
         {
             player.SuperPogo();
+            if (collision.GetComponentInChildren<ParticleSystem>())
+            {
+                collision.GetComponentInChildren<ParticleSystem>().Play();
+            }
             collision.GetComponentInChildren<ParticleSystem>().Play();
         }
 
