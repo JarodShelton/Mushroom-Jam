@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Switch : MonoBehaviour, Interactable
 {
@@ -9,14 +10,17 @@ public class Switch : MonoBehaviour, Interactable
 
     private RadialTimer _rt;
     private Flipper _fl;
+    private Light2D _light;
 
     private bool flipped = false;
 
     private void Awake()
     {
         _rt = GetComponent<RadialTimer>();
+        _light = GetComponentInChildren<Light2D>();
+        _light.enabled = false;
     }
-
+    
     public void Interact()
     {
         if (!flipped)
@@ -25,6 +29,7 @@ public class Switch : MonoBehaviour, Interactable
 
             flipped = true;
             manager.SetTrigger();
+            _light.enabled = true;
             
             _rt.ResetTimer();
         }
@@ -32,6 +37,7 @@ public class Switch : MonoBehaviour, Interactable
         {
             flipped = false;
             manager.ResetTrigger();
+            _light.enabled = false;
             
             _rt.StopTimer();
         }
