@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MikeySandbox.unity
     guid: 0aa5b8e949988944ba90f6efa7d77f55
+  - enabled: 1
+    path: Assets/Scenes/JarodSandbox.unity
+    guid: 5f1d445f595363649965064560ef7dae
   m_configObjects: {}

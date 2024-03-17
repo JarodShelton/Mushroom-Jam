@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
         {
             switch (index)
             {
-                case 0: SceneManager.LoadScene(0); break;
+                case 0: SceneManager.LoadScene(1); break;
                 case 1: Application.Quit(); break;
             }
         }
