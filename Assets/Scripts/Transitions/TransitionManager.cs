@@ -131,7 +131,7 @@ public class TransitionManager : MonoBehaviour
     {
         PlayerController _controller = _player.GetComponent<PlayerController>();
         _controller.FreezeInput(true);
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
         float target = _direction > 0 ? 1 : 0;
         while (_pos != target)
         {
