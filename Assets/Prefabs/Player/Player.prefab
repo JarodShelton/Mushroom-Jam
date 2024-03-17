@@ -381,7 +381,7 @@ MonoBehaviour:
     m_Bits: 8
   wall:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8
   maxSpeed: 10
   timeToMaxSpeed: 0.15
   airMovementReduction: 1

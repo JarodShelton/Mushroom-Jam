@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     [Header("Respawn")]
     [SerializeField] float deathDelay = 0.2f;
     [SerializeField] float respawnDelay = 0.2f;
+    [SerializeField] private GameObject _deathParticles;
+    [SerializeField] private GameObject _respawnParticles;
+    
 
     private Vector2 velocity = Vector2.zero;
     private Vector2 externalForces = Vector2.zero;
@@ -521,6 +524,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Kill()
     {
+        Instantiate(_deathParticles, transform.position, Quaternion.Euler(0,0,0));
+        
         anim.SetState(PlayerAnim.States.Death, true);
         anim.SetLock(true);
         freezeMovement = true;
@@ -537,6 +542,9 @@ public class PlayerController : MonoBehaviour
         anim.SetState(PlayerAnim.States.Respawn, true);
         anim.SetLock(true);
         transform.position = room.GetRespawnPoint();
+        
+        Instantiate(_respawnParticles, transform.position, Quaternion.Euler(-90,0,0));
+        
         yield return new WaitForSeconds(respawnDelay);
         freezeMovement = false;
         anim.SetLock(false);
