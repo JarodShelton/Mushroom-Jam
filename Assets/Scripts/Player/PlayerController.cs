@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
     private bool walledRight = false;
     private bool directionOverride = false;
 
+    private bool crouched = false;
+    private bool landed = false;
+
     private float jumpDelayDuration = 0.05f;
 
     public enum Direction { Left, Right, Up , Down}
@@ -146,8 +149,32 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            PlaySounds();
+        }
+    }
+
+    private void PlaySounds()
+    {
+        bool ground = IsGrounded();
+        if (Input.GetKey(KeyCode.DownArrow) && ground && !crouched)
+        {
+            crouched = true;
+            AudioManager.Instance.PlaySFXClip("sfx_player_crouch", 0.25f);
+        }else if (!(Input.GetKey(KeyCode.DownArrow) && ground) && crouched)
+        {
+            crouched = false;
 
         }
+
+        if(!landed && ground)
+        {
+            landed = true;
+            AudioManager.Instance.PlaySFXClip("sfx_player_landing", 0.25f);
+        }else if(!ground && landed)
+        {
+            landed = false;
+        }
+        
     }
 
     private void FixedUpdate()
