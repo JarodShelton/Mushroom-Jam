@@ -11,7 +11,7 @@ public class Door : MonoBehaviour, Event
     private bool open = false;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(open && transform.position != endPoint.position)
         {

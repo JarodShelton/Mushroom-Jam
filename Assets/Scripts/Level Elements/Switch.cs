@@ -29,7 +29,7 @@ public class Switch : MonoBehaviour, Interactable
 
             flipped = true;
             manager.SetTrigger();
-            _light.enabled = true;
+            _light.enabled = false;
             
             _rt.ResetTimer();
         }

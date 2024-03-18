@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class Spore : MonoBehaviour
     [SerializeField] float lifeSpan = 0;
     [SerializeField] float velocity = 0;
 
-    void Update()
+    [SerializeField] private GameObject _impactParticles;
+    
+     void Update()
     {
         transform.Translate(Vector3.right * velocity * Time.deltaTime);
     }
@@ -35,6 +38,8 @@ public class Spore : MonoBehaviour
                 i.Interact();
             }
         }
+        
+        Instantiate(_impactParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
