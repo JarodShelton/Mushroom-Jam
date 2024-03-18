@@ -6,11 +6,13 @@ public class Fan : MonoBehaviour
 {
     [SerializeField] float blowSpeed = 10;
 
+    public AudioSource sfx;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            // AudioManager.Instance.PlaySFXClip("sfx_env_fan", .3f);
+            AudioManager.Instance.PlaySFXLoop("sfx_player_fanBlowing", .3f);
 
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             Vector2 direction = transform.up;
@@ -22,8 +24,7 @@ public class Fan : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            // AudioManager.Instance.FadeOutSFXClip();
-
+            AudioManager.Instance.StopSFXLoop("sfx_player_fanBlowing");
 
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             Vector2 direction = transform.up;

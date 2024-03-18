@@ -193,6 +193,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
+
             directionOverride = false;
             if (!HuggingWall() && !blasting && !anim.Locked())
             {
@@ -203,6 +204,7 @@ public class PlayerController : MonoBehaviour
         } 
         else if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
+
             directionOverride = false;
             if (!HuggingWall() && !blasting)
             {

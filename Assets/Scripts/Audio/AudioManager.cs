@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,6 +23,21 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            PlayMainMenuMusic("music_mainMenuTheme", .15f);
+        }
+        else if (scene.name == "Game-Mikey")
+        {
+            PlayLevelMusic("music_levelTheme", .15f);
+        }
+        //PlayMusic("music_mainMenuTheme", .15f);
     }
 
     // TODO: Plug in audio sources to Audio Manager (1/3)
@@ -32,6 +48,7 @@ public class AudioManager : MonoBehaviour
 
 
     // Starter documentation for PlaySFX method and some examples for calling methods below...
+
 
     //public void PlaySFXClip(string name, Transform sourceTransform, float volume)
     public void PlaySFXClip(string name, float volume)
@@ -61,11 +78,52 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-        // Get length of clip
-        // float clipLength = audioSource.clip.length;
-        // Destroy the clip after it's done playing
-        // Destroy(audioSource.gameObject, clipLength);
-    
+    // Get length of clip
+    // float clipLength = audioSource.clip.length;
+    // Destroy the clip after it's done playing
+    // Destroy(audioSource.gameObject, clipLength);
+    public void PlayLevelMusic(string name, float volume)
+    {
+        // AudioSource audioSource = Instantiate(ambienceSource, sourceTransform.position, Quaternion.identity);
+
+        SoundData sd = Array.Find(musicSounds, x => x.name == name);
+
+        if (sd == null)
+        {
+            Debug.Log("Sound '" + name + "' Not Found");
+        }
+        else
+        {
+            musicSource.clip = sd.clip;
+
+            musicSource.volume = volume;
+            musicSource.Play();
+        }
+
+    }
+
+    public void PlayMainMenuMusic(string name, float volume)
+    {
+        // AudioSource audioSource = Instantiate(ambienceSource, sourceTransform.position, Quaternion.identity);
+
+        SoundData sd = Array.Find(musicSounds, x => x.name == name);
+
+        if (sd == null)
+        {
+            Debug.Log("Sound '" + name + "' Not Found");
+        }
+        else
+        {
+            musicSource.clip = sd.clip;
+
+            musicSource.volume = volume;
+            musicSource.Play();
+        }
+
+        //float clipLength = audioSource.clip.length;
+        //Destroy(audioSource.gameObject, clipLength);
+    }
+
 }
 
     // TODO: PlayRandomSFXClip()
