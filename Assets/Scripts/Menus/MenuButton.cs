@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class MenuButton : MonoBehaviour
 {
     bool selected = false;
+    [SerializeField] Color selectColor = new Color(28 / 255f, 140 / 255f, 136 / 255f);
+    [SerializeField] Color deselectColor = new Color(120 / 255f, 140 / 255f, 128 / 255f);
 
     public void Select()
     {
@@ -14,7 +16,7 @@ public class MenuButton : MonoBehaviour
         {
             selected = true;
         }
-        gameObject.GetComponent<Image>().color = new Color(62/255f, 95 / 255f, 135 / 255f);
+        gameObject.GetComponent<Image>().color = selectColor;
     }
 
     public void Deselect()
@@ -23,6 +25,6 @@ public class MenuButton : MonoBehaviour
         {
             selected = false;
         }
-        gameObject.GetComponent<Image>().color = new Color(128 / 255f, 128 / 255f, 128 / 255f);
+        gameObject.GetComponent<Image>().color = deselectColor;
     }
 }
