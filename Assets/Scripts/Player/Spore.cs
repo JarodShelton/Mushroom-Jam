@@ -7,6 +7,9 @@ public class Spore : MonoBehaviour
     [SerializeField] float lifeSpan = 0;
     [SerializeField] float velocity = 0;
 
+    [SerializeField] private GameObject _impactParticles;
+    [SerializeField] private GameObject _trailParticles;
+
     void Update()
     {
         transform.Translate(Vector3.right * velocity * Time.deltaTime);
@@ -35,6 +38,7 @@ public class Spore : MonoBehaviour
                 i.Interact();
             }
         }
+        Instantiate(_impactParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

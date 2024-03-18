@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class DoorTransition : MonoBehaviour, Interactable
@@ -70,7 +65,7 @@ public class DoorTransition : MonoBehaviour, Interactable
         _bc.enabled = false;
 
         // Instantiate Particles
-        GameObject decayParticle = Instantiate(_decayParticles, transform.position, quaternion.identity);
+        GameObject decayParticle = Instantiate(_decayParticles, transform.position, Quaternion.identity);
         GameObject smashParticle = Instantiate(_smashParticles, transform.position, Quaternion.Euler(0, 90, 0));
         
         // Apply changes to the particle's shape

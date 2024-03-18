@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
     
     private void Awake()
     {
-        _respawnPoint = new Vector2(0, 0);
+        _respawnPoint = new Vector2(0, -2);
     }
     
     // Used by DoorTransition scripts
