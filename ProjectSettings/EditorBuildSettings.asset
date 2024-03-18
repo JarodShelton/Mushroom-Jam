@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 48d97d06d01bdbf4886c571afdb6a4f1
   - enabled: 1
-    path: Assets/Scenes/JarodSandbox.unity
-    guid: 5f1d445f595363649965064560ef7dae
-  - enabled: 0
     path: Assets/Scenes/MikeySandbox.unity
     guid: 0aa5b8e949988944ba90f6efa7d77f55
+  - enabled: 1
+    path: Assets/Scenes/MainMenu_Expanded.unity
+    guid: 8e4d7f53779cde54ba0cf1f7c1c0571b
+  - enabled: 0
+    path: Assets/Scenes/JarodSandbox.unity
+    guid: 5f1d445f595363649965064560ef7dae
   m_configObjects: {}

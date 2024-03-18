@@ -29,11 +29,11 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainMenu")
+        if (scene.name == "MainMenu" || scene.name == "MainMenu_Expanded")
         {
             PlayMainMenuMusic("music_mainMenuTheme", .15f);
         }
-        else if (scene.name == "Game-Mikey")
+        else if (scene.name == "MikeySandbox")
         {
             PlayLevelMusic("music_levelTheme", .15f);
         }
