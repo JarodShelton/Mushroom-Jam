@@ -76,8 +76,9 @@ public class PauseMenu : MonoBehaviour
                         menu.SetActive(false); 
                         break;
 
-                    case 1: 
-                        SceneManager.LoadScene(0); 
+                    case 1:
+                        Time.timeScale = 1f;
+                        SceneManager.LoadScene(2); 
                         break;
                 }
             }
