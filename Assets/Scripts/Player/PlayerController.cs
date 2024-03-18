@@ -421,9 +421,9 @@ public class PlayerController : MonoBehaviour
     private bool CanWallJump(Direction direction)
     {
         if (direction == Direction.Right)
-            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.right, 0.15f, wall);
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.right, 0.2f, wall);
         else
-            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.left, 0.15f, wall);
+            return Physics2D.BoxCast(transform.position, new Vector2(1, 1), 0, Vector2.left, 0.2f, wall);
     }
 
     public bool HuggingWall()
