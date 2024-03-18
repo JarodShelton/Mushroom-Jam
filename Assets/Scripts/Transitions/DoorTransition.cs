@@ -91,6 +91,7 @@ public class DoorTransition : MonoBehaviour, Interactable
         // If there's a _bigLight, fade it in
         if (_bigLight != null)
         {
+            _bigLight.enabled = true;
             StartCoroutine(FadeLight(_bigLight, _bLightIntensity, _bLightFadeTime));
         }
 
