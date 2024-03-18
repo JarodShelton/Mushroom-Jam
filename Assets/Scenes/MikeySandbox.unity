@@ -22826,6 +22826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499178983}
   - component: {fileID: 499178982}
+  - component: {fileID: 499178984}
   m_Layer: 0
   m_Name: portal
   m_TagString: Untagged
@@ -22900,6 +22901,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499178984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499178981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5a66165bf1838438303352b7c331d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usesLocalTime: 1
+  _canRotate: 0
+  _canRotateBackAndForth: 0
+  _canHover: 0
+  _degreesPerSecond: {x: 0, y: 0, z: 15}
+  _amplitude: 0.33
+  _frequency: 1
 --- !u!1 &500976085
 GameObject:
   m_ObjectHideFlags: 0
@@ -30833,6 +30853,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8456630681825880313, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
   m_PrefabInstance: {fileID: 7748573501414554692}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &699208433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7348101144366359728, guid: 27d5de20c6e59e44f85aef3c4a660bc2, type: 3}
+  m_PrefabInstance: {fileID: 7748573501414554692}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699208429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84dc92a23f57e784bbfdb0b68b20cdf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703018804
 GameObject:
   m_ObjectHideFlags: 0
@@ -88485,7 +88516,7 @@ MonoBehaviour:
   menu: {fileID: 931016741}
   respawnButton: {fileID: 805189611}
   quitButton: {fileID: 496121101}
-  player: {fileID: 0}
+  player: {fileID: 699208433}
 --- !u!4 &2119568922
 Transform:
   m_ObjectHideFlags: 0
