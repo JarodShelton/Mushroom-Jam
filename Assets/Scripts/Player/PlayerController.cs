@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private bool crouched = false;
     private bool landed = false;
+    private bool ran = false;
+    private bool slid = false;
 
     private float jumpDelayDuration = 0.05f;
 
@@ -174,7 +176,27 @@ public class PlayerController : MonoBehaviour
         {
             landed = false;
         }
-        
+
+        if (ground && Mathf.Abs(velocity.x) > 0 && !ran)
+        {
+            ran = true;
+            AudioManager.Instance.PlaySFXClip("sfx_player_running", 0.25f);
+        }
+        else if (!(ground && Mathf.Abs(velocity.x) > 0) && ran)
+        {
+            ran = false;
+            AudioManager.Instance.KillLoop();
+        }
+
+        /*if (!landed && ground)
+        {
+            landed = true;
+            AudioManager.Instance.PlaySFXClip("sfx_player_landing", 0.25f);
+        }
+        else if (!ground && landed)
+        {
+            landed = false;
+        }*/
     }
 
     private void FixedUpdate()

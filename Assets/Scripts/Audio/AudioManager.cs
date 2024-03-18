@@ -12,6 +12,12 @@ public class AudioManager : MonoBehaviour
     //[SerializeField] AudioSource SFXSource, ambienceSource, musicSource;
     public AudioSource SFXSource, ambienceSource, musicSource;
 
+    private double goalTime = 0;
+    private Coroutine loopingSound = null;
+    private SoundData loopingData = null;
+    private float loopingVolume = 0f;
+    private double soundDuration = 0;
+
     private void Awake()
     {
         if (Instance == null)
@@ -70,12 +76,79 @@ public class AudioManager : MonoBehaviour
         // If so, assign clip from SoundData to audioSource gameObject and play from source
         else
         {
+            KillLoop();
             SFXSource.clip = sd.clip;
 
             // Asign volume
             SFXSource.volume = volume;
             SFXSource.PlayOneShot(sd.clip);
         }
+    }
+
+    public void LoopSFXClip(string name, float volume)
+    {
+        // Spawn in audioSource gameObject
+        // AudioSource audioSource = Instantiate(SFXSource, sourceTransform.position, Quaternion.identity);
+
+        // Match string of loaded SoundData clip to the string of call
+        SoundData sd = Array.Find(SFXSounds, x => x.name == name);
+
+        // Spawn in audioSource gameObject
+        // AudioSource audioSource = Instantiate(SFXSource, sourceTransform.position, Quaternion.identity);
+
+        // Check if name matches
+        if (sd == null)
+        {
+            Debug.Log("Sound '" + name + "' Not Found");
+        }
+        // If so, assign clip from SoundData to audioSource gameObject and play from source
+        else
+        {
+            if (loopingSound != null)
+                KillLoop();
+
+            goalTime = AudioSettings.dspTime + 0.5;
+
+            ambienceSource.clip = sd.clip;
+
+            // Asign volume
+            ambienceSource.volume = volume;
+            loopingVolume = volume;
+            ambienceSource.PlayScheduled(goalTime);
+
+            soundDuration = (double) sd.clip.samples / sd.clip.frequency;
+            goalTime = goalTime + soundDuration;
+
+            loopingData = sd;
+            StartCoroutine(Loop());
+        }
+    }
+
+    IEnumerator Loop()
+    {
+        while (true)
+        {
+            if (AudioSettings.dspTime > goalTime - 1)
+            {
+                ambienceSource.clip = loopingData.clip;
+                SFXSource.PlayScheduled(goalTime);
+
+                soundDuration = (double)loopingData.clip.samples / loopingData.clip.frequency;
+                goalTime = goalTime + soundDuration;
+            }
+            goalTime -= (double)Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void KillLoop()
+    {
+        if(loopingSound != null)
+            StopCoroutine(loopingSound);
+        loopingSound = null;
+        loopingVolume = 0;
+        SFXSource.Stop();
+        ambienceSource.Stop();
     }
 
     // Get length of clip
