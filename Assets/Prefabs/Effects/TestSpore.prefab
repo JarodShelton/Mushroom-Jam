@@ -129,7 +129,6 @@ MonoBehaviour:
   lifeSpan: 0.5
   velocity: 40
   _impactParticles: {fileID: 329741539961974769, guid: 6cedefcd4b64d8043bc7ca0a4ee444e9, type: 3}
-  _trailParticles: {fileID: 0}
 --- !u!58 &8473945975324679553
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,4 +163,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
