@@ -134,8 +134,8 @@ Transform:
   m_GameObject: {fileID: 4688657140100177602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 2.5, y: 2, z: 1}
+  m_LocalPosition: {x: 0.75, y: 0, z: 1}
+  m_LocalScale: {x: 3.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7093911584874365078}
@@ -312,7 +312,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -378,10 +378,10 @@ MonoBehaviour:
   anim: {fileID: 7426327495082454519}
   ground:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   wall:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   maxSpeed: 10
   timeToMaxSpeed: 0.15
   airMovementReduction: 1
@@ -394,13 +394,15 @@ MonoBehaviour:
   wallJumpReductionTime: 0.5
   wallSlideSpeed: 5
   timeToMaxSlideSpeed: 0.1
-  pogoHeight: 3
+  pogoHeight: 3.5
   superPogoHeight: 10
   swingLockDelay: 0.15
   blastLength: 4
   blastDuration: 0.15
   deathDelay: 0.3
   respawnDelay: 1.2
+  _deathParticles: {fileID: 329741539961974769, guid: 674b0ea236851544ab88ddefc5bf06a2, type: 3}
+  _respawnParticles: {fileID: 329741539961974769, guid: 72c998c009ad1dc4d8521b8787abf00e, type: 3}
 --- !u!114 &148771949448351958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,7 +418,7 @@ MonoBehaviour:
   player: {fileID: 7348101144366359728}
   hitbox: {fileID: 2387755159230428941}
   swingDelay: 0.1
-  swingDistance: 1.25
+  swingDistance: 0.75
   hitboxActiveDuration: 0.1
 --- !u!114 &7681596158063943517
 MonoBehaviour:
